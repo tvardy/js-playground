@@ -50,6 +50,7 @@
     "browser-sync": "2.26.13",
     "browserslist": "4.16.1",
     "esbuild": "0.8.31",
+    "esbuild-svelte": "0.4.0",
     "eslint": "7.17.0",
     "eslint-config-standard": "16.0.2",
     "eslint-plugin-babel": "5.3.1",
