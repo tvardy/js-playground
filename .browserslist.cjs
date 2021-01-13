@@ -21,5 +21,5 @@ function getBuildTargets() {
 }
 
 module.exports = {
-  list: getBuildTargets()
+  list: getBuildTargets(),
 }

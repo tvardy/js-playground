@@ -3,7 +3,8 @@
   "overrides": [
     {
       "files": [
-        "*.js"
+        "*.js",
+        "*.cjs"
       ],
       "options": {
         "singleQuote": true,

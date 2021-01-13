@@ -1,26 +1,27 @@
 const { list } = require('./.browserslist.cjs')
 const esbuild = require('esbuild')
+const sveltePlugin = require('esbuild-svelte')
 const pack = require('./package.json')
 
 const env = process.argv[2] || 'dev'
 
 const options = {
   _: {
-    entryPoints: [ pack.main ],
+    entryPoints: [pack.main],
     bundle: true,
-    // summary: true,
     sourcemap: true,
+    plugins: [sveltePlugin()],
     target: list,
-    outdir: pack.outdir
+    outdir: pack.outdir,
   },
   dev: {
     define: {
-      "process.env.NODE_ENV": "'development'"
-    }
+      'process.env.NODE_ENV': "'development'",
+    },
   },
   prod: {
-    minify: true
-  }
+    minify: true,
+  },
 }
 
 esbuild
