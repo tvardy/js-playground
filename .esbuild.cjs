@@ -20,11 +20,13 @@ const options = {
     },
   },
   prod: {
+    define: {
+      'process.env.NODE_ENV': "'production'",
+    },
     minify: true,
   },
 }
 
 esbuild
   .build(Object.assign({}, options._, options[env]))
-  .then((res) => console.dir(res))
   .catch(() => process.exit(1))

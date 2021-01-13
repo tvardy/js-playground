@@ -1,0 +1,26 @@
+<style scoped>
+  button {
+    color: green
+  }
+</style>
+
+<uce-test>
+  The <button onClick={{increase}}>{{thing}}</button> is {{state.count}}
+</uce-test>
+
+<script type="module">
+  export default {
+    setup() {
+      import { reactive } from '@uce'
+
+      const state = reactive({ count: 0 })
+      const increase = () => state.count++
+
+      return {
+        thing: 'click state',
+        state,
+        increase
+      }
+    }
+  }
+</script>
