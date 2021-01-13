@@ -1,6 +1,7 @@
 // We needed a global Promise polyfill, because the `whatwg-fetch` expects it
-import 'promise-polyfill/dist/polyfill.min.js'
-import 'whatwg-fetch'
+// import 'promise-polyfill/dist/polyfill.min.js'
+// import 'whatwg-fetch'
+// ** (As I changed the browserslist criteria there's no need for the polyfills anymore)
 
 import { getStorage } from './utils/storage.js'
 
