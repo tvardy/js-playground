@@ -1,3 +1,5 @@
+import { Log } from './tools/Logger.js'
+
 {
-    console.log('started!')
+  Log.debug('started!')
 }
