@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "just checking some interesting stuff",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "clean": "rimraf dist",
     "format": "prettier --write \"src/**/*.{js,html,scss}\"",
@@ -36,6 +37,7 @@
     "whatwg-fetch": "3.5.0"
   },
   "devDependencies": {
+    "babel-eslint": "10.1.0",
     "esbuild": "0.8.31",
     "eslint": "7.17.0",
     "eslint-config-standard": "16.0.2",

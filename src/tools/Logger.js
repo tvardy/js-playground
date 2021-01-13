@@ -1,4 +1,13 @@
-import { console, localStorage } from '../_globals'
+import { console, localStorage } from '../_globals.js'
+
+export const LEVELS = {
+  DEBUG: 'DEBUG',
+  INFO: 'INFO',
+  LOG: 'LOG',
+  WARN: 'WARN',
+  ERROR: 'ERROR',
+  OFF: 'OFF'
+}
 
 const CONFIG = {
   DEBUG: 1,
@@ -41,31 +50,31 @@ export class Logger {
 
   debug () {
     if (this.logLevel.value <= CONFIG.DEBUG) {
-      console.debug.apply(console, arguments)
+      console.debug(LEVELS.DEBUG, '::', ...arguments)
     }
   }
 
   info () {
     if (this.logLevel.value <= CONFIG.INFO) {
-      console.info.apply(console, arguments)
+      console.info(LEVELS.INFO, '::', ...arguments)
     }
   }
 
   log () {
     if (this.logLevel.value <= CONFIG.LOG) {
-      console.log.apply(console, arguments)
+      console.log(LEVELS.LOG, '::', ...arguments)
     }
   }
 
   warn () {
     if (this.logLevel.value <= CONFIG.WARN) {
-      console.warn.apply(console, arguments)
+      console.warn(LEVELS.WARN, '::', ...arguments)
     }
   }
 
   error () {
     if (this.logLevel.value <= CONFIG.ERROR) {
-      console.error.apply(console, arguments)
+      console.error(LEVELS.ERROR, '::', ...arguments)
     }
   }
 }

@@ -1,8 +1,8 @@
 // We needed a global Promise polyfill, because the `whatwg-fetch` expects it
-import 'promise-polyfill/dist/polyfill.min'
+import 'promise-polyfill/dist/polyfill.min.js'
 import 'whatwg-fetch'
 
-import { getStorage } from './utils/storage'
+import { getStorage } from './utils/storage.js'
 
 /**
  * Note: `window` should only be used directly in cases where it can't be avoided,
@@ -15,9 +15,9 @@ const globals = (function () {
   // However, this causes CSP violations in Chrome apps.
   if (typeof self !== 'undefined') return self // eslint-disable-line no-undef
 
-  if (typeof window !== 'undefined') return window // eslint-disable-line no-undef
-
   if (typeof global !== 'undefined') return global // eslint-disable-line no-undef
+
+  if (typeof window !== 'undefined') return window // eslint-disable-line no-undef
 
   throw new Error('unable to locate global object')
 })()
