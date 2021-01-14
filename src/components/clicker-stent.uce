@@ -4,9 +4,9 @@
   }
 </style>
 
-<uce-test>
+<clicker-stent>
   The <button onClick={{props.increase}}>{{props.thing}}</button> is {{props.count.value}}
-</uce-test>
+</clicker-stent>
 
 <script type="module" setup="props">
   import { reactive } from '@uce';

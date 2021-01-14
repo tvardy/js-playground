@@ -4,7 +4,7 @@ import { fetch } from './_globals.js'
 import loader from 'uce-loader'
 import { parse } from 'uce-template'
 
-import SvelteTest from './components/test.svelte'
+import ClickerStent from './components/clicker-stent.svelte'
 
 import Store from './store.js'
 
@@ -32,8 +32,8 @@ loader({
 })
 
 // Svelte
-const st = new SvelteTest({
-  target: document.querySelector('.svelte')
+const st = new ClickerStent({
+  target: document.querySelector('#one .svelte')
 })
 
 if (st) {
@@ -41,18 +41,18 @@ if (st) {
 }
 
 // VanillaJS
-const button = document.getElementById('main-click')
-const display = document.getElementById('count')
+const button1 = document.querySelector('#one .main-click')
+const display1 = document.querySelector('#one .count')
 
-setDisplay(store.state.count)
+setDisplay(display1, store.state.count)
 
-button.addEventListener('click', () => {
+button1.addEventListener('click', () => {
   Log.debug('Main button clicked!')
   store.increase()
 })
 
-onStateChange(({ count }) => setDisplay(count))
+onStateChange(({ count }) => setDisplay(display1, count))
 
-function setDisplay (value) {
-  display.innerHTML = value
+function setDisplay (element, value) {
+  element.innerHTML = value
 }

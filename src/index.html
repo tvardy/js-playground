@@ -7,18 +7,47 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="svelte"></div>
-    <hr />
-    <div class="uce">
-      <uce-test></uce-test>
-    </div>
-    <hr />
-    <div class="vanilla">
-      Intependent <button id="main-click">button</button> controls everything... (<span
-        id="count"
-      ></span
-      >)
-    </div>
+    <h2>Managing global state with Stent</h2>
+    <section id="one">
+      <div class="box">
+        <h3>Svelte</h3>
+        <div class="svelte"></div>
+      </div>
+      <div class="box">
+        <h3>µce-template</h3>
+        <div class="uce">
+          <clicker-stent />
+        </div>
+      </div>
+      <div class="box">
+        <h3>VanillaJS</h3>
+        <div class="vanilla">
+          Independent
+          <button class="main-click">button</button>
+          (<span class="count"></span>)
+        </div>
+      </div>
+    </section>
+
+    <h2>Managing global state with ...</h2>
+    <section id="two">
+      <div class="box">
+        <h3>Svelte</h3>
+        <div class="svelte"></div>
+      </div>
+      <div class="box">
+        <h3>µce-template</h3>
+        <div class="uce"></div>
+      </div>
+      <div class="box">
+        <h3>VanillaJS</h3>
+        <div class="vanilla">
+          Independent
+          <button class="main-click">button</button>
+          (<span class="count"></span>)
+        </div>
+      </div>
+    </section>
     <script type="module" src="main.js"></script>
   </body>
 </html>
