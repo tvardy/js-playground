@@ -2,7 +2,7 @@ import { LEVELS, Log } from './tools/Logger.js'
 import { fetch } from './_globals.js'
 
 import loader from 'uce-loader'
-import { parse } from 'uce-template/esm'
+import { parse } from 'uce-template'
 
 import SvelteTest from './components/test.svelte'
 
@@ -18,8 +18,9 @@ loader({
       fetch(`components/${component}.uce`)
         .then((body) => body.text())
         .then((definition) => {
-          Log.debug('loaded', `<${component}>`)
-          document.body.appendChild(parse(definition))
+          const parsed = parse(definition)
+          Log.debug('just loaded', `<${component}>`, parsed)
+          document.body.appendChild(parsed)
         })
     }
   }
