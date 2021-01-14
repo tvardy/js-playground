@@ -17,9 +17,9 @@
     increase: () => {}
   };
 
-  prepare()
+  connectToStore()
 
-  async function prepare() {
+  async function connectToStore() {
     const Store = await import('./store.js')
     const { store, onStateChange } = Store.default
 
