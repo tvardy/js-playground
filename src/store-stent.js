@@ -2,18 +2,20 @@ import { Machine } from 'stent'
 import { connect } from 'stent/lib/helpers'
 import { Log } from './tools/Logger'
 
+const defaultState = 'default'
+
 const store = Machine.create(
   // initial state
   {
-    name: 'idle',
-    count: 0
+    name: defaultState,
+    count: 3
   },
 
   // transitions
   {
-    idle: {
+    [defaultState]: {
       increase: ({ state }) => {
-        return { name: 'idle', count: state.count + 1 }
+        return { name: defaultState, count: state.count + 1 }
       }
     }
   }

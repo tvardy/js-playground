@@ -1,12 +1,13 @@
 <style scoped>
   button {
-    color: green
+    color: olive;
+    font-weight: bold;
   }
 </style>
 
-<clicker-stent>
+<clicker-preach>
   The <button onClick={{props.increase}}>{{props.thing}}</button> is {{props.count.value}}
-</clicker-stent>
+</clicker-preach>
 
 <script type="module" setup="props">
   import { reactive } from '@uce';
@@ -20,11 +21,10 @@
   connectToStore()
 
   async function connectToStore() {
-    const Store = await import('./store-stent.js')
-    const { store, onStateChange } = Store.default
+    const { state, actions, onStateChange } = await import('./store-preach.js')
 
-    props.increase = store.increase
-    props.count.value = store.state.count
+    props.count.value = state.count
+    props.increase = actions.increase
 
     onStateChange(({ count }) => props.count.value = count)
   }

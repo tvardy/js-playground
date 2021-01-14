@@ -21,7 +21,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "esbuild": {
-    "entries": ["src/main.js", "src/store.js"],
+    "entries": [
+      "src/main.js",
+      "src/store-stent.js",
+      "src/store-preach.js"
+    ],
     "outdir": "dist"
   },
   "husky": {
@@ -47,6 +51,7 @@
   },
   "homepage": "https://github.com/tvardy/js-playground#readme",
   "dependencies": {
+    "preach": "0.3.0",
     "stent": "8.0.4",
     "uce-loader": "2.0.0",
     "uce-template": "0.3.1"

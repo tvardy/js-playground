@@ -5,13 +5,14 @@ import loader from 'uce-loader'
 import { parse } from 'uce-template'
 
 import ClickerStent from './components/clicker-stent.svelte'
+import ClickerPreach from './components/clicker-preach.svelte'
 
-import Store from './store.js'
-
-const { store, onStateChange } = Store
+// VanillaJS
+import './components/clicker-stent.js'
+import './components/clicker-preach.js'
 
 if (process.env.NODE_ENV === 'development') {
-  Log.logLevel = LEVELS.DEBUG
+  Log.logLevel = LEVELS.ERROR
 }
 
 Log.debug('started!')
@@ -32,27 +33,15 @@ loader({
 })
 
 // Svelte
-const st = new ClickerStent({
-  target: document.querySelector('#one .svelte')
-})
+const st = [
+  new ClickerStent({
+    target: document.querySelector('#one .svelte')
+  }),
+  new ClickerPreach({
+    target: document.querySelector('#two .svelte')
+  })
+]
 
 if (st) {
   Log.debug('Svelte works fine', st)
-}
-
-// VanillaJS
-const button1 = document.querySelector('#one .main-click')
-const display1 = document.querySelector('#one .count')
-
-setDisplay(display1, store.state.count)
-
-button1.addEventListener('click', () => {
-  Log.debug('Main button clicked!')
-  store.increase()
-})
-
-onStateChange(({ count }) => setDisplay(display1, count))
-
-function setDisplay (element, value) {
-  element.innerHTML = value
 }

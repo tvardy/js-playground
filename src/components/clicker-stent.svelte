@@ -1,9 +1,9 @@
 <script>
-  import Store from '../store.js'
+  import Store from '../store-stent.js'
 
   const { store, onStateChange } = Store
 
-  let count = 0
+  let count = store.state.count
 
   function handleClick() {
     store.increase()
