@@ -1,14 +1,5 @@
 import { console, localStorage } from '../_globals.js'
 
-export const LEVELS = {
-  DEBUG: 'DEBUG',
-  INFO: 'INFO',
-  LOG: 'LOG',
-  WARN: 'WARN',
-  ERROR: 'ERROR',
-  OFF: 'OFF'
-}
-
 const CONFIG = {
   DEBUG: 1,
   INFO: 2,
@@ -17,6 +8,11 @@ const CONFIG = {
   ERROR: 5,
   OFF: 10
 }
+
+export const LEVELS = Object.keys(CONFIG).reduce((o, key) => {
+  o[key] = key
+  return o
+}, {})
 
 export class Logger {
   constructor (key = 'debug') {
