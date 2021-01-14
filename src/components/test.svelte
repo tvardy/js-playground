@@ -1,9 +1,15 @@
 <script>
-  let count = 0;
+  import Store from '../store.js'
+
+  const { store, onStateChange } = Store
+
+  let count = 0
 
   function handleClick() {
-    count += 1;
+    store.increase()
   }
+
+  onStateChange((state) => count = state.count)
 </script>
 
 <button on:click={handleClick}>

@@ -7,12 +7,14 @@ const env = process.argv[2] || 'dev'
 
 const options = {
   _: {
-    entryPoints: [pack.main],
+    entryPoints: pack.esbuild.entries,
     bundle: true,
     sourcemap: true,
+    format: 'esm',
+    splitting: true,
     plugins: [sveltePlugin()],
     target: list,
-    outdir: pack.outdir,
+    outdir: pack.esbuild.outdir,
   },
   dev: {
     define: {

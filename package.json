@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "just checking some interesting stuff",
   "main": "src/main.js",
-  "outdir": "dist",
   "type": "module",
   "scripts": {
     "bs:reload": "browser-sync reload",
     "prebuild": "npm run clean",
     "build": "node .esbuild.cjs",
-    "postbuild": "cp src/*.html dist/ && mkdir dist/components && cp src/components/*.uce dist/components/",
+    "postbuild": "npm-run-all -p copy:*",
+    "copy:html": "cp src/*.html dist/",
+    "copy:uce": "mkdir dist/components && cp src/components/*.uce dist/components/",
+    "_copy:state": "cp src/state.js dist/",
     "build:prod": "npm run build -- prod",
     "clean": "rimraf dist",
     "format": "prettier --write \"./**/*.{js,cjs,html,css,scss,json,svelte}\"",
@@ -18,6 +20,10 @@
     "start:build": "onchange \"src/**/*\" -- npm-run-all build bs:reload",
     "start:bs": "browser-sync start --server dist",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "esbuild": {
+    "entries": ["src/main.js", "src/store.js"],
+    "outdir": "dist"
   },
   "husky": {
     "hooks": {
@@ -42,6 +48,7 @@
   },
   "homepage": "https://github.com/tvardy/js-playground#readme",
   "dependencies": {
+    "stent": "8.0.4",
     "uce-loader": "2.0.0",
     "uce-template": "0.3.1"
   },

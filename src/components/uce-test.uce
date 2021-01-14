@@ -5,22 +5,26 @@
 </style>
 
 <uce-test>
-  The <button onClick={{increase}}>{{thing}}</button> is {{state.count}}
+  The <button onClick={{props.increase}}>{{props.thing}}</button> is {{props.count.value}}
 </uce-test>
 
-<script type="module">
-  export default {
-    setup() {
-      import { reactive } from '@uce'
+<script type="module" setup="props">
+  import { reactive } from '@uce';
 
-      const state = reactive({ count: 0 })
-      const increase = () => state.count++
+  export const props = {
+    thing: 'click state',
+    count: reactive({ value: 0 }),
+    increase: () => {}
+  };
 
-      return {
-        thing: 'click state',
-        state,
-        increase
-      }
-    }
+  prepare()
+
+  async function prepare() {
+    const Store = await import('./store.js')
+    const { store, onStateChange } = Store.default
+
+    props.increase = store.increase
+
+    onStateChange(({ count }) => props.count.value = count)
   }
 </script>

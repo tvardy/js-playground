@@ -6,12 +6,17 @@ import { parse } from 'uce-template'
 
 import SvelteTest from './components/test.svelte'
 
+import Store from './store.js'
+
+const { store, onStateChange } = Store
+
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
 }
 
 Log.debug('started!')
 
+// uce-template
 loader({
   on (component) {
     if (component !== 'uce-template') {
@@ -26,10 +31,28 @@ loader({
   }
 })
 
+// Svelte
 const st = new SvelteTest({
   target: document.querySelector('.svelte')
 })
 
 if (st) {
   Log.debug('Svelte works fine', st)
+}
+
+// VanillaJS
+const button = document.getElementById('main-click')
+const display = document.getElementById('count')
+
+setDisplay(store.state.count)
+
+button.addEventListener('click', () => {
+  Log.debug('Main button clicked!')
+  store.increase()
+})
+
+onStateChange(({ count }) => setDisplay(count))
+
+function setDisplay (value) {
+  display.innerHTML = value
 }
