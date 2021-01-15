@@ -1,20 +1,28 @@
 import { Log } from '../tools/Logger.js'
 import Store from '../store-stent.js'
 
-const { store, onStateChange } = Store
+const { connect } = Store
 
 const parent = document.getElementById('one')
 const button = parent.querySelector('.main-click')
 const display = parent.querySelector('.count')
 
-setDisplay(display, store.state.count)
+let reaction
 
 button.addEventListener('click', () => {
   Log.debug('First button clicked!')
-  store.increase()
+  reaction()
 })
 
-onStateChange(({ count }) => setDisplay(display, count))
+function mapState ({ count }) {
+  setDisplay(display, count)
+}
+
+function mapActions (actions) {
+  reaction = actions.increase
+}
+
+connect(mapState, mapActions)
 
 export function setDisplay (element, value) {
   element.innerHTML = value

@@ -1,16 +1,23 @@
 import { Log } from '../tools/Logger.js'
-import { state, actions, onStateChange } from '../store-preach.js'
+import { connect } from '../store-preach.js'
 import { setDisplay } from './clicker-stent.js'
 
 const parent = document.getElementById('two')
 const button = parent.querySelector('.main-click')
 const display = parent.querySelector('.count')
-
-setDisplay(display, state.count)
+let reaction
 
 button.addEventListener('click', () => {
   Log.debug('Second button clicked!')
-  actions.increase()
+  reaction()
 })
 
-onStateChange(({ count }) => setDisplay(display, count))
+function mapState ({ count }) {
+  setDisplay(display, count)
+}
+
+function mapActions (actions) {
+  reaction = actions.increase
+}
+
+connect(mapState, mapActions)

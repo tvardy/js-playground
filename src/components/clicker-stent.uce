@@ -17,15 +17,21 @@
     increase: () => {}
   };
 
-  connectToStore()
+  function mapState({ count }) {
+    props.count.value = count
+  }
 
-  async function connectToStore() {
-    const Store = await import('./store-stent.js')
-    const { store, onStateChange } = Store.default
+  function mapActions(actions) {
+    props.increase = actions.increase
+  }
 
-    props.increase = store.increase
-    props.count.value = store.state.count
+  connectToStore('./store-stent.js')
+    .then(connect => connect(mapState, mapActions))
 
-    onStateChange(({ count }) => props.count.value = count)
+  async function connectToStore(path) {
+    const Store = await import(path)
+    const { connect } = Store.default
+
+    return connect
   }
 </script>

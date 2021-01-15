@@ -1,6 +1,5 @@
 import { Machine } from 'stent'
 import { connect } from 'stent/lib/helpers'
-import { Log } from './tools/Logger'
 
 const defaultState = 'default'
 
@@ -21,16 +20,13 @@ const store = Machine.create(
   }
 )
 
-const onStateChange = (fn) => {
+const connectWrapper = (mapState, mapActions) => {
   connect()
     .with(store.name)
-    .mapSilent(({ state }) => {
-      Log.debug('the state has changed!', state)
-      fn(state)
-    })
+    .map((_store) => mapState(_store.state))
+  mapActions(store)
 }
 
 export default {
-  store,
-  onStateChange
+  connect: connectWrapper
 }

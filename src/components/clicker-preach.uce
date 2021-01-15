@@ -18,14 +18,21 @@
     increase: () => {}
   };
 
-  connectToStore()
+  function mapState({ count }) {
+    props.count.value = count
+  }
 
-  async function connectToStore() {
-    const { state, actions, onStateChange } = await import('./store-preach.js')
-
-    props.count.value = state.count
+  function mapActions(actions) {
     props.increase = actions.increase
+  }
 
-    onStateChange(({ count }) => props.count.value = count)
+  connectToStore('./store-preach.js')
+    .then(connect => connect(mapState, mapActions))
+
+  async function connectToStore(path) {
+    const Store = await import(path)
+    const { connect } = Store
+
+    return connect
   }
 </script>

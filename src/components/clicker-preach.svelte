@@ -1,13 +1,18 @@
 <script>
-  import { state, actions, onStateChange } from '../store-preach.js'
+  import { connect } from '../store-preach.js'
 
-  let count = state.count
+  let count
+  let handleClick
 
-  function handleClick() {
-    actions.increase()
+  function mapState(state) {
+    count = state.count
   }
 
-  onStateChange((state) => count = state.count)
+  function mapActions(actions) {
+    handleClick = actions.increase
+  }
+
+  connect(mapState, mapActions)
 </script>
 
 <button on:click={handleClick}>

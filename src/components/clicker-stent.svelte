@@ -1,15 +1,19 @@
 <script>
   import Store from '../store-stent.js'
+  const { connect } = Store
 
-  const { store, onStateChange } = Store
+  let count
+  let handleClick
 
-  let count = store.state.count
-
-  function handleClick() {
-    store.increase()
+  function mapState(state) {
+    count = state.count
   }
 
-  onStateChange((state) => count = state.count)
+  function mapActions(actions) {
+    handleClick = actions.increase
+  }
+
+  connect(mapState, mapActions)
 </script>
 
 <button on:click={handleClick}>

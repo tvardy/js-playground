@@ -24,11 +24,14 @@ const StateHandler = {
   }
 }
 
-export const state = new Proxy(_state, StateHandler)
-export const actions = Object.keys(_actions).reduce((res, key) => {
+const state = new Proxy(_state, StateHandler)
+const actions = Object.keys(_actions).reduce((res, key) => {
   res[key] = (...args) => _actions[key](...args)
   return res
 }, {})
-export const onStateChange = (fn) => {
-  preach.sub('change', (s) => fn(s))
+
+export const connect = (mapState, mapActions) => {
+  preach.sub('change', (s) => mapState(s))
+  mapActions(actions)
+  preach.pub('change', state)
 }

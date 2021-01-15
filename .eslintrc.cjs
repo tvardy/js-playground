@@ -5,7 +5,7 @@ module.exports = {
     node: true,
   },
   parser: 'babel-eslint',
-  extends: ['standard', 'plugin:react/recommended'],
+  extends: ['standard'],
   plugins: ['babel'],
   parserOptions: {
     ecmaVersion: 6,
