@@ -5,11 +5,9 @@ import loader from 'uce-loader'
 import { parse } from 'uce-template'
 
 import ClickerStent from './components/clicker-stent.svelte'
-import ClickerPreach from './components/clicker-preach.svelte'
 
 // VanillaJS
 import './components/clicker-stent.js'
-import './components/clicker-preach.js'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.ERROR
@@ -19,8 +17,10 @@ Log.debug('started!')
 
 // uce-template
 loader({
+  container: document.querySelector('#stent .uce'),
+  known: new Set(['clicker-stent']),
   on (component) {
-    if (component !== 'uce-template') {
+    if (this.known.has(component)) {
       fetch(`components/${component}.uce`)
         .then((body) => body.text())
         .then((definition) => {
@@ -33,15 +33,10 @@ loader({
 })
 
 // Svelte
-const st = [
-  new ClickerStent({
-    target: document.querySelector('#one .svelte')
-  }),
-  new ClickerPreach({
-    target: document.querySelector('#two .svelte')
-  })
-]
+const s = new ClickerStent({
+  target: document.querySelector('#stent .svelte')
+})
 
-if (st) {
-  Log.debug('Svelte works fine', st)
+if (s) {
+  Log.debug('Svelte works fine', s)
 }

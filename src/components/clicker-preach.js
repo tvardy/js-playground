@@ -2,7 +2,7 @@ import { Log } from '../tools/Logger.js'
 import { connect } from '../store-preach.js'
 import { setDisplay } from './clicker-stent.js'
 
-const parent = document.getElementById('two')
+const parent = document.getElementById('preach')
 const button = parent.querySelector('.main-click')
 const display = parent.querySelector('.count')
 let reaction

@@ -3,7 +3,7 @@ import Store from '../store-stent.js'
 
 const { connect } = Store
 
-const parent = document.getElementById('one')
+const parent = document.getElementById('stent')
 const button = parent.querySelector('.main-click')
 const display = parent.querySelector('.count')
 
