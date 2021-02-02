@@ -2,7 +2,8 @@ import { LEVELS, Log } from './tools/Logger.js'
 import { fetch } from './_globals.js'
 
 import loader from 'uce-loader'
-import { parse } from 'uce-template'
+import { resolve, parse } from 'uce-template'
+import * as StorePreach from './store-preach'
 
 import ClickerPreach from './components/clicker-preach.svelte'
 
@@ -16,6 +17,8 @@ if (process.env.NODE_ENV === 'development') {
 Log.debug('started!')
 
 // uce-template
+resolve('../store-preach.js', StorePreach)
+
 loader({
   container: document.querySelector('#preach .uce'),
   known: new Set(['clicker-preach']),

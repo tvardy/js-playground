@@ -2,7 +2,8 @@ import { LEVELS, Log } from './tools/Logger.js'
 import { fetch } from './_globals.js'
 
 import loader from 'uce-loader'
-import { parse } from 'uce-template'
+import { resolve, parse } from 'uce-template'
+import StoreStent from './store-stent'
 
 import ClickerStent from './components/clicker-stent.svelte'
 
@@ -16,6 +17,8 @@ if (process.env.NODE_ENV === 'development') {
 Log.debug('started!')
 
 // uce-template
+resolve('../store-stent.js', StoreStent)
+
 loader({
   container: document.querySelector('#stent .uce'),
   known: new Set(['clicker-stent']),

@@ -10,6 +10,7 @@ const _state = {
 // actions
 const _actions = {
   increase () {
+    console.trace(':: Preach Store: increase() called')
     state.count = state.count + 1
   }
 }

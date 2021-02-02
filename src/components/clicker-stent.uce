@@ -10,11 +10,12 @@
 
 <script type="module" setup="props">
   import { reactive } from '@uce';
+  import { connect } from '../store-stent.js';
 
   export const props = {
     thing: 'click state',
     count: reactive({ value: 0 }),
-    increase: () => {}
+    increase: () => { console.trace(':: Stent Clicker: placeholder increase() called') }
   };
 
   function mapState({ count }) {
@@ -25,6 +26,7 @@
     props.increase = actions.increase
   }
 
+  // version (a)
   connectToStore('./store-stent.js')
     .then(connect => connect(mapState, mapActions))
 
@@ -34,4 +36,10 @@
 
     return connect
   }
+
+  // version (b)
+  // connect(mapState, mapActions)
+
+  // version (c)
+  // setTimeout(() => connect(mapState, mapActions), 0)
 </script>

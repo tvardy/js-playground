@@ -14,6 +14,7 @@ const store = Machine.create(
   {
     [defaultState]: {
       increase: ({ state }) => {
+        console.trace(':: Stent Store: increase() called')
         return { name: defaultState, count: state.count + 1 }
       }
     }
