@@ -1,0 +1,33 @@
+<script type="module" setup>
+  import { connect } from '../store-stent.js'
+
+  const component = {
+    all: 0,
+    done: 0
+  }
+
+  function mapState(state) {
+    component.all = state.todos.length
+    component.done = state.todos.filter(el => el.done).length
+  }
+
+  connect(mapState)
+
+  export default component
+</script>
+
+<style scoped>
+footer {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #999;
+  color: #999;
+  font-size: 0.7em;
+}
+</style>
+
+<todos-footer-stent>
+  <footer>
+    Done: {{done}} / {{all}}
+  </footer>
+</todos-footer-stent>

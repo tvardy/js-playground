@@ -18,17 +18,14 @@ resolve('../store-preach.js', StorePreach)
 
 loader({
   container: document.querySelector('#preach .uce'),
-  known: new Set(['app-preach']),
   on (component) {
-    if (this.known.has(component)) {
-      fetch(`components/${component}.uce`)
-        .then((body) => body.text())
-        .then((definition) => {
-          const parsed = parse(definition)
-          Log.debug('Preach Loader just loaded', `<${component}>`, parsed)
-          document.body.appendChild(parsed)
-        })
-    }
+    fetch(`components/${component}.uce`)
+      .then((body) => body.text())
+      .then((definition) => {
+        const parsed = parse(definition)
+        Log.debug('Preach Loader just loaded', `<${component}>`, parsed)
+        document.body.appendChild(parsed)
+      })
   }
 })
 

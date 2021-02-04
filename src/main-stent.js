@@ -18,17 +18,14 @@ resolve('../store-stent.js', StoreStent)
 
 loader({
   container: document.querySelector('#stent .uce'),
-  known: new Set(['app-stent']),
   on (component) {
-    if (this.known.has(component)) {
-      fetch(`components/${component}.uce`)
-        .then((body) => body.text())
-        .then((definition) => {
-          const parsed = parse(definition)
-          Log.debug('Stent Loader just loaded', `<${component}>`, parsed)
-          document.body.appendChild(parsed)
-        })
-    }
+    fetch(`components/${component}.uce`)
+      .then((body) => body.text())
+      .then((definition) => {
+        const parsed = parse(definition)
+        Log.debug('Stent Loader just loaded', `<${component}>`, parsed)
+        document.body.appendChild(parsed)
+      })
   }
 })
 

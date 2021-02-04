@@ -1,5 +1,7 @@
 import Preach from 'preach'
 
+import { _noop } from './utils/noop'
+
 const preach = new Preach()
 
 // initial state
@@ -31,7 +33,7 @@ const actions = Object.keys(_actions).reduce((res, key) => {
   return res
 }, {})
 
-export function connect (mapState, mapActions) {
+export function connect (mapState = _noop, mapActions = _noop) {
   mapActions(actions)
 
   preach.sub('change', (s) => mapState(s))
