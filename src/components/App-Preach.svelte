@@ -1,8 +1,8 @@
 <script>
-  import Footer from './todos-footer-preach.svelte'
+  import TodosList from './todos-list-preach.svelte'
+  import TodosFooter from './todos-footer-preach.svelte'
 </script>
 
 <input name="todo">
-<ul>
-</ul>
-<Footer />
+<TodosList />
+<TodosFooter />

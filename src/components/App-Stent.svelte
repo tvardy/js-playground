@@ -1,8 +1,8 @@
 <script>
-  import Footer from './todos-footer-stent.svelte'
+  import TodosList from './todos-list-stent.svelte'
+  import TodosFooter from './todos-footer-stent.svelte'
 </script>
 
 <input name="todo">
-<ul>
-</ul>
-<Footer />
+<TodosList />
+<TodosFooter />

@@ -1,6 +1,8 @@
 <script type="module" setup>
   import { connect } from '../store-preach.js'
 
+  const _self = this
+
   const component = {
     all: 0,
     done: 0
@@ -9,6 +11,7 @@
   function mapState(state) {
     component.all = state.todos.length
     component.done = state.todos.filter(el => el.done).length
+    _self.render()
   }
 
   connect(mapState)
@@ -26,8 +29,8 @@ footer {
 }
 </style>
 
-<todos-footer-stent>
+<todos-footer-preach>
   <footer>
     Done: {{done}} / {{all}}
   </footer>
-</todos-footer-stent>
+</todos-footer-preach>

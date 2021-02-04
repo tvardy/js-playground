@@ -4,7 +4,6 @@
 
 <app-preach>
   <input name="todo">
-  <ul>
-  </ul>
-  <todos-footer-preach />
+  <todos-list-preach></todos-list-preach>
+  <todos-footer-preach></todos-footer-preach>
 </app-preach>

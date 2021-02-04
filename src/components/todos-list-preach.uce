@@ -1,0 +1,37 @@
+<script type="module" setup>
+  import { html, reactive } from '@uce';
+  import { connect } from '../store-preach.js'
+
+  const _self = this
+
+  const component = {
+    html,
+    todos: reactive({ list: [] }),
+    toggle: () => {}
+  }
+
+  function mapState(state) {
+    component.todos.list = state.todos
+  }
+
+  function mapActions({ toggle }) {
+    component.toggle = (e) => toggle(e.target.dataset.id)
+  }
+
+  connect(mapState, mapActions)
+
+  export default component
+</script>
+
+<style scoped>
+li.done {
+  color: #999;
+  text-decoration: line-through;
+}
+</style>
+
+<todos-list-preach>
+<ul ondblclick="{{toggle}}">
+  {{todos.list.map(function(item, i) { return html.for(item)`<li data-id=${item.id} class="${item.done ? 'done' : ''}">${item.text}</li>` })}}
+  </ul>
+</todos-list-preach>

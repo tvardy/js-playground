@@ -9,15 +9,25 @@ const store = Machine.create(
   // initial state
   {
     name: defaultState,
-    todos: [{ text: 'double click me!', done: false }]
+    todos: [
+      { id: '001', text: 'double click me!', done: false },
+      { id: '002', text: 'I am, by default, DONE', done: true }
+    ]
   },
 
   // transitions
   {
     [defaultState]: {
-      actionName () {
-        // console.log('?', this)
-        // return { name: defaultState, count: state.count + 1 }
+      toggle ({ state }, id) {
+        return {
+          ...state,
+          todos: state.todos.map((item) => {
+            if (item.id === id) {
+              item.done = !item.done
+            }
+            return item
+          })
+        }
       }
     }
   }

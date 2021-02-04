@@ -4,7 +4,6 @@
 
 <app-stent>
   <input name="todo">
-  <ul>
-  </ul>
-  <todos-footer-stent />
+  <todos-list-stent></todos-list-stent>
+  <todos-footer-stent></todos-footer-stent>
 </app-stent>

@@ -6,14 +6,21 @@ const preach = new Preach()
 
 // initial state
 const _state = {
-  todos: [{ text: 'double click me!', done: false }]
+  todos: [
+    { id: '100', text: 'double click me!', done: false },
+    { id: '200', text: 'I am, by default, DONE', done: true }
+  ]
 }
 
 // actions
 const _actions = {
-  actionName () {
-    // console.log('?', this)
-    // state.count = state.count + 1
+  toggle (id) {
+    state.todos = state.todos.map((item) => {
+      if (item.id === id) {
+        item.done = !item.done
+      }
+      return item
+    })
   }
 }
 
