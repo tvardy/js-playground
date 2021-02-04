@@ -41,5 +41,5 @@
   // connect(mapState, mapActions)
 
   // version (c)
-  // setTimeout(() => connect(mapState, mapActions), 0)
+//   setTimeout(() => connect(mapState, mapActions), 0)
 </script>
