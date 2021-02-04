@@ -4,14 +4,14 @@ const preach = new Preach()
 
 // initial state
 const _state = {
-  count: 42
+  todos: [{ text: 'double click me!', done: false }]
 }
 
 // actions
 const _actions = {
-  increase () {
-    console.trace(':: Preach Store: increase() called')
-    state.count = state.count + 1
+  actionName () {
+    // console.log('?', this)
+    // state.count = state.count + 1
   }
 }
 
@@ -31,8 +31,9 @@ const actions = Object.keys(_actions).reduce((res, key) => {
   return res
 }, {})
 
-export const connect = (mapState, mapActions) => {
-  preach.sub('change', (s) => mapState(s))
+export function connect (mapState, mapActions) {
   mapActions(actions)
+
+  preach.sub('change', (s) => mapState(s))
   preach.pub('change', state)
 }

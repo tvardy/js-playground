@@ -3,13 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Playground</title>
+
+    <link rel="stylesheet" href="_common.css" />
     <link rel="stylesheet" href="main-stent.css" />
     <link rel="stylesheet" href="main-preach.css" />
-    <title>Document</title>
+    <script type="module" src="main-stent.js" async></script>
+    <script type="module" src="main-preach.js" async></script>
   </head>
   <body>
-    <h2>Managing global state with Stent</h2>
     <section id="stent">
+      <header>
+        <h2>Managing global state with Stent</h2>
+      </header>
       <div class="box">
         <h3>Svelte</h3>
         <div class="svelte"></div>
@@ -17,22 +23,15 @@
       <div class="box">
         <h3>µce-template</h3>
         <div class="uce">
-          <clicker-stent />
-        </div>
-      </div>
-      <div class="box">
-        <h3>VanillaJS</h3>
-        <div class="vanilla">
-          Independent
-          <button class="main-click">button</button><br />
-          setting:
-          <span class="count"></span>
+          <app-stent />
         </div>
       </div>
     </section>
 
-    <h2>Managing global state with Preach</h2>
     <section id="preach">
+      <header>
+        <h2>Managing global state with Preach</h2>
+      </header>
       <div class="box">
         <h3>Svelte</h3>
         <div class="svelte"></div>
@@ -40,22 +39,9 @@
       <div class="box">
         <h3>µce-template</h3>
         <div class="uce">
-          <clicker-preach />
-        </div>
-      </div>
-      <div class="box">
-        <h3>VanillaJS</h3>
-        <div class="vanilla">
-          Independent
-          <button class="main-click">button</button><br />
-          setting:
-          <span class="count"></span>
+          <app-preach />
         </div>
       </div>
     </section>
-
-    <script type="module" src="main-stent.js"></script>
-    <script type="module" src="main-preach.js"></script>
-    <!-- <script type="module" src="main-xstate.js"></script> -->
   </body>
 </html>

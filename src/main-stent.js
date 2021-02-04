@@ -3,32 +3,29 @@ import { fetch } from './_globals.js'
 
 import loader from 'uce-loader'
 import { resolve, parse } from 'uce-template'
-import StoreStent from './store-stent'
+import * as StoreStent from './store-stent'
 
-import ClickerStent from './components/clicker-stent.svelte'
-
-// VanillaJS
-import './components/clicker-stent.js'
+import SvelteAppStent from './components/App-Stent.svelte'
 
 if (process.env.NODE_ENV === 'development') {
-  Log.logLevel = LEVELS.ERROR
+  Log.logLevel = LEVELS.DEBUG
 }
 
-Log.debug('started!')
+Log.debug('Stent script started!')
 
 // uce-template
 resolve('../store-stent.js', StoreStent)
 
 loader({
   container: document.querySelector('#stent .uce'),
-  known: new Set(['clicker-stent']),
+  known: new Set(['app-stent']),
   on (component) {
     if (this.known.has(component)) {
       fetch(`components/${component}.uce`)
         .then((body) => body.text())
         .then((definition) => {
           const parsed = parse(definition)
-          Log.debug('just loaded', `<${component}>`, parsed)
+          Log.debug('Stent Loader just loaded', `<${component}>`, parsed)
           document.body.appendChild(parsed)
         })
     }
@@ -36,10 +33,10 @@ loader({
 })
 
 // Svelte
-const s = new ClickerStent({
+const s = new SvelteAppStent({
   target: document.querySelector('#stent .svelte')
 })
 
 if (s) {
-  Log.debug('Svelte works fine', s)
+  Log.debug('Stent & Svelte working fine')
 }

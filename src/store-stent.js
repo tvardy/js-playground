@@ -7,15 +7,15 @@ const store = Machine.create(
   // initial state
   {
     name: defaultState,
-    count: 3
+    todos: [{ text: 'double click me!', done: false }]
   },
 
   // transitions
   {
     [defaultState]: {
-      increase: ({ state }) => {
-        console.trace(':: Stent Store: increase() called')
-        return { name: defaultState, count: state.count + 1 }
+      actionName () {
+        // console.log('?', this)
+        // return { name: defaultState, count: state.count + 1 }
       }
     }
   }
@@ -25,9 +25,8 @@ const connectWrapper = (mapState, mapActions) => {
   connect()
     .with(store.name)
     .map((_store) => mapState(_store.state))
+
   mapActions(store)
 }
 
-export default {
-  connect: connectWrapper
-}
+export { connectWrapper as connect }

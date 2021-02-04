@@ -5,30 +5,27 @@ import loader from 'uce-loader'
 import { resolve, parse } from 'uce-template'
 import * as StorePreach from './store-preach'
 
-import ClickerPreach from './components/clicker-preach.svelte'
-
-// VanillaJS
-import './components/clicker-preach.js'
+import SvelteAppPreach from './components/App-Preach.svelte'
 
 if (process.env.NODE_ENV === 'development') {
-  Log.logLevel = LEVELS.ERROR
+  Log.logLevel = LEVELS.DEBUG
 }
 
-Log.debug('started!')
+Log.debug('Preach script started!')
 
 // uce-template
 resolve('../store-preach.js', StorePreach)
 
 loader({
   container: document.querySelector('#preach .uce'),
-  known: new Set(['clicker-preach']),
+  known: new Set(['app-preach']),
   on (component) {
     if (this.known.has(component)) {
       fetch(`components/${component}.uce`)
         .then((body) => body.text())
         .then((definition) => {
           const parsed = parse(definition)
-          Log.debug('just loaded', `<${component}>`, parsed)
+          Log.debug('Preach Loader just loaded', `<${component}>`, parsed)
           document.body.appendChild(parsed)
         })
     }
@@ -36,10 +33,10 @@ loader({
 })
 
 // Svelte
-const s = new ClickerPreach({
+const s = new SvelteAppPreach({
   target: document.querySelector('#preach .svelte')
 })
 
 if (s) {
-  Log.debug('Svelte works fine', s)
+  Log.debug('Preach & Svelte working fine')
 }

@@ -10,6 +10,7 @@
     "build": "node .esbuild.cjs",
     "postbuild": "npm-run-all -p copy:*",
     "copy:html": "cp src/*.html dist/",
+    "copy:css": "cp src/_common.css dist/",
     "copy:uce": "mkdir -p dist/components && uce-template src/components -o dist/components",
     "build:prod": "npm run build -- prod",
     "clean": "rimraf dist",
@@ -61,7 +62,7 @@
     "babel-eslint": "10.1.0",
     "browser-sync": "2.26.14",
     "browserslist": "4.16.3",
-    "esbuild": "0.8.39",
+    "esbuild": "0.8.41",
     "esbuild-svelte": "0.4.0",
     "eslint": "7.19.0",
     "eslint-config-standard": "16.0.2",
@@ -75,6 +76,6 @@
     "npm-run-all": "4.1.5",
     "onchange": "7.1.0",
     "prettier": "2.2.1",
-    "prettier-plugin-svelte": "2.1.1"
+    "prettier-plugin-svelte": "2.1.2"
   }
 }
