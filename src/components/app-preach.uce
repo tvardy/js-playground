@@ -3,7 +3,7 @@
 </script>
 
 <app-preach>
-  <input name="todo">
+  <todos-input-preach></todos-input-preach>
   <todos-list-preach></todos-list-preach>
   <todos-footer-preach></todos-footer-preach>
 </app-preach>

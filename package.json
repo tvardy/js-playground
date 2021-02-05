@@ -56,7 +56,8 @@
     "preach": "0.3.0",
     "stent": "8.0.4",
     "uce-loader": "2.0.0",
-    "uce-template": "0.4.2"
+    "uce-template": "0.4.2",
+    "uuid": "8.3.2"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",

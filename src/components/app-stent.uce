@@ -3,7 +3,7 @@
 </script>
 
 <app-stent>
-  <input name="todo">
+  <todos-input-stent></todos-input-stent>
   <todos-list-stent></todos-list-stent>
   <todos-footer-stent></todos-footer-stent>
 </app-stent>
