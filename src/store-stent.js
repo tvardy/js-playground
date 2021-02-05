@@ -1,7 +1,8 @@
 import { Machine } from 'stent'
 import { connect } from 'stent/lib/helpers'
-import { v4 as uuid } from 'uuid'
+import { nanoid as uuid } from 'nanoid'
 
+import initialState from './store-initial-state'
 import { _noop } from './utils/noop'
 
 const defaultState = 'default'
@@ -10,18 +11,7 @@ const store = Machine.create(
   // initial state
   {
     name: defaultState,
-    todos: [
-      {
-        id: 'a176887e-6ed9-4bfd-807f-838c182a7b4f',
-        text: 'double click me!',
-        done: false
-      },
-      {
-        id: 'bb98313c-acb3-4219-a087-0e17e7f94de2',
-        text: 'I am, by default, DONE',
-        done: true
-      }
-    ]
+    ...initialState
   },
 
   // transitions

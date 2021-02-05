@@ -8,11 +8,11 @@
     "bs:reload": "browser-sync reload",
     "prebuild": "npm run clean",
     "build": "node .esbuild.cjs",
+    "build:prod": "npm run build -- prod",
     "postbuild": "npm-run-all -p copy:*",
     "copy:html": "cp src/*.html dist/",
     "copy:css": "cp src/_common.css dist/",
     "copy:uce": "mkdir -p dist/components && uce-template src/components -o dist/components",
-    "build:prod": "npm run build -- prod",
     "clean": "rimraf dist",
     "format": "prettier --write \"./**/*.{js,cjs,html,css,scss,json,svelte}\"",
     "lint": "eslint --fix src/",
@@ -24,9 +24,7 @@
   "esbuild": {
     "entries": [
       "src/main-stent.js",
-      "src/main-preach.js",
-      "src/store-stent.js",
-      "src/store-preach.js"
+      "src/main-preach.js"
     ],
     "outdir": "dist"
   },
@@ -53,11 +51,11 @@
   },
   "homepage": "https://github.com/tvardy/js-playground#readme",
   "dependencies": {
+    "nanoid": "3.1.20",
     "preach": "0.3.0",
     "stent": "8.0.4",
     "uce-loader": "2.0.0",
-    "uce-template": "0.4.2",
-    "uuid": "8.3.2"
+    "uce-template": "0.4.2"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
@@ -78,5 +76,8 @@
     "onchange": "7.1.0",
     "prettier": "2.2.1",
     "prettier-plugin-svelte": "2.1.2"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

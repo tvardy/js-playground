@@ -33,3 +33,7 @@ section header {
   padding: 1em;
   min-width: 49%;
 }
+
+.box.wide {
+  width: 100%;
+}
