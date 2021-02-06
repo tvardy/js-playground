@@ -6,41 +6,28 @@
 </style>
 
 <clicker-preach>
-  The <button onClick={{props.increase}}>{{props.thing}}</button> is {{props.count.value}}
+  The <button onclick={{increase}}>{{thing}}</button> is {{count.value}}
 </clicker-preach>
 
-<script type="module" setup="props">
+<script type="module" setup>
   import { reactive } from '@uce';
   import { connect } from '../store-preach.js';
 
-  export const props = {
+  const component = {
     thing: 'click state',
     count: reactive({ value: 0 }),
     increase: () => { console.trace(':: Preach Clicker: placeholder increase() called') }
-  };
+  }
+
+  export default component
 
   function mapState({ count }) {
-    props.count.value = count
+    component.count.value = count
   }
 
   function mapActions(actions) {
-    props.increase = actions.increase
+    component.increase = actions.increase
   }
 
-  // version (a)
-  connectToStore('./store-preach.js')
-    .then(connect => connect(mapState, mapActions))
-
-  async function connectToStore(path) {
-    const Store = await import(path)
-    const { connect } = Store
-
-    return connect
-  }
-
-  // version (b)
-  // connect(mapState, mapActions)
-
-  // version (c)
-  // setTimeout(() => connect(mapState, mapActions), 0)
+  connect(mapState, mapActions)
 </script>

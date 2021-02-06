@@ -13,7 +13,7 @@ const store = Machine.create(
   // transitions
   {
     [defaultState]: {
-      increase: ({ state }) => {
+      increase ({ state }) {
         console.trace(':: Stent Store: increase() called')
         return { name: defaultState, count: state.count + 1 }
       }
@@ -28,6 +28,4 @@ const connectWrapper = (mapState, mapActions) => {
   mapActions(store)
 }
 
-export default {
-  connect: connectWrapper
-}
+export { connectWrapper as connect }

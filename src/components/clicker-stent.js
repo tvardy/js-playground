@@ -1,7 +1,5 @@
 import { Log } from '../tools/Logger.js'
-import Store from '../store-stent.js'
-
-const { connect } = Store
+import { connect } from '../store-stent.js'
 
 const parent = document.getElementById('stent')
 const button = parent.querySelector('.main-click')

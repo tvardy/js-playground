@@ -1,6 +1,5 @@
 <script>
-  import Store from '../store-stent.js'
-  const { connect } = Store
+  import { connect } from '../store-stent.js'
 
   let count
   let handleClick

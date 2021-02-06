@@ -3,7 +3,7 @@ import { fetch } from './_globals.js'
 
 import loader from 'uce-loader'
 import { resolve, parse } from 'uce-template'
-import StoreStent from './store-stent'
+import * as StoreStent from './store-stent'
 
 import ClickerStent from './components/clicker-stent.svelte'
 
@@ -21,17 +21,14 @@ resolve('../store-stent.js', StoreStent)
 
 loader({
   container: document.querySelector('#stent .uce'),
-  known: new Set(['clicker-stent']),
   on (component) {
-    if (this.known.has(component)) {
-      fetch(`components/${component}.uce`)
-        .then((body) => body.text())
-        .then((definition) => {
-          const parsed = parse(definition)
-          Log.debug('just loaded', `<${component}>`, parsed)
-          document.body.appendChild(parsed)
-        })
-    }
+    fetch(`components/${component}.uce`)
+      .then((body) => body.text())
+      .then((definition) => {
+        const parsed = parse(definition)
+        Log.debug('just loaded', `<${component}>`, parsed)
+        document.body.appendChild(parsed)
+      })
   }
 })
 
