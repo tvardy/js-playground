@@ -19,7 +19,10 @@
     "start": "npm-run-all build -p start:*",
     "start:build": "onchange \"src/**/*\" -- npm-run-all build bs:reload",
     "start:bs": "browser-sync start --server dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "esbuild": {
     "entries": [
@@ -27,11 +30,6 @@
       "src/main-preach.js"
     ],
     "outdir": "dist"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
@@ -61,21 +59,22 @@
     "babel-eslint": "10.1.0",
     "browser-sync": "2.26.14",
     "browserslist": "4.16.3",
-    "esbuild": "0.8.41",
-    "esbuild-svelte": "0.4.0",
+    "esbuild": "0.8.44",
+    "esbuild-svelte": "0.4.1",
     "eslint": "7.19.0",
     "eslint-config-standard": "16.0.2",
     "eslint-plugin-babel": "5.3.1",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-promise": "4.3.1",
     "eslint-plugin-standard": "5.0.0",
-    "husky": "4.3.8",
-    "lint-staged": "10.5.3",
+    "husky": "5.0.9",
+    "lint-staged": "10.5.4",
     "npm-run-all": "4.1.5",
     "onchange": "7.1.0",
+    "pinst": "2.1.4",
     "prettier": "2.2.1",
-    "prettier-plugin-svelte": "2.1.2"
+    "prettier-plugin-svelte": "2.1.4"
   },
   "engines": {
     "node": "12.x"
