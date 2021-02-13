@@ -1,0 +1,12 @@
+<script type=module setup>import{html as t,reactive as o}from"@uce"
+import{connect as e}from"../store-preach.js"
+const s=this,i={html:t,todos:o({list:[]}),toggle:()=>{}}
+function r(t){i.todos.list=t.todos}function g({toggle:t}){i.toggle=o=>t(o.target.dataset.id)}e(r,g)
+export default i
+</script>
+<style scoped>li.done{color:#999;text-decoration:line-through}</style>
+<todos-list-preach>
+<ul ondblclick={{toggle}}>
+{{todos.list.map(function(item, i) { return html.for(item)`<li data-id=${item.id} class="${item.done ? 'done' : ''}">${item.text}</li>` })}}
+</ul>
+</todos-list-preach>

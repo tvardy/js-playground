@@ -1,0 +1,8 @@
+<script type=module></script>
+export default {}
+
+<app-preach>
+<todos-input-preach></todos-input-preach>
+<todos-list-preach></todos-list-preach>
+<todos-footer-preach></todos-footer-preach>
+</app-preach>
