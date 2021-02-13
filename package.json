@@ -27,7 +27,8 @@
   "esbuild": {
     "entries": [
       "src/main-stent.js",
-      "src/main-preach.js"
+      "src/main-preach.js",
+      "src/main-stores.js"
     ],
     "outdir": "dist"
   },

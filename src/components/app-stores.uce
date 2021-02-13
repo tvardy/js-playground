@@ -1,0 +1,9 @@
+<script type="module">
+  export default {}
+</script>
+
+<app-stores>
+  <todos-input></todos-input>
+  <todos-list></todos-list>
+  <todos-footer></todos-footer>
+</app-stores>

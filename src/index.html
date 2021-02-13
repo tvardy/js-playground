@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="_common.css" />
     <link rel="stylesheet" href="main-stent.css" />
     <link rel="stylesheet" href="main-preach.css" />
+    <link rel="stylesheet" href="main-stores.css" />
     <script type="module" src="main-stent.js" async></script>
     <script type="module" src="main-preach.js" async></script>
+    <script type="module" src="main-stores.js" async></script>
   </head>
   <body>
     <section id="stent">
@@ -44,18 +46,35 @@
       </div>
     </section>
 
+    <section id="stores">
+      <header>
+        <h2>Managing global state with Svelte Stores</h2>
+      </header>
+      <div class="box">
+        <h3>Svelte</h3>
+        <div class="svelte"></div>
+      </div>
+      <div class="box">
+        <h3>µce-template</h3>
+        <div class="uce">
+          <app-stores />
+        </div>
+      </div>
+    </section>
+
     <section>
       <header>
         <h2>File size summary:</h2>
       </header>
       <div class="box wide">
-        <strong>Svelte CSS:</strong> 235B<br />
-        <strong>Unminimized `_common.css` file:</strong> 536B<br />
-        <strong>Main JS file:</strong> 9.3kB (Preach) / 17kB (Stent)<br />
-        <strong>Shared JS chunk:</strong> 30kB<br />
-        <strong>UCE components folder:</strong> 36kB<br />
+        <strong>Svelte scoped CSS:</strong> 235B each<br />
+        <strong>Main JS file:</strong> 9.3kB (Preach) / 17kB (Stent) / 4.1kB (Svelte
+        Stores)<br />
+        <strong>Shared JS chunks:</strong> 30kB + 594B<br />
+        <strong>UCE components folder:</strong> 1.73kB (Preach) / 1.71kB (Stent) /
+        1.63kB (Svelte Stores)<br />
         <br />
-        <strong>Overall:</strong> 93kB (24kB GZipped)
+        <strong>Overall:</strong> 144kB (28kB GZipped)
       </div>
     </section>
   </body>
