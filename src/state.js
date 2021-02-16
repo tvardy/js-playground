@@ -29,7 +29,10 @@ export function init (name, store, SvelteApp) {
 
   // Svelte
   const s = new SvelteApp({
-    target: document.querySelector('section .svelte')
+    target: document.querySelector('section .svelte'),
+    props: {
+      connect: store.connect
+    }
   })
 
   if (s) {

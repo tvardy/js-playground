@@ -1,11 +1,18 @@
 <script>
-  import { store } from '../store.js'
+  export let connect
 
   let todos = []
+  let handleToggle = () => {}
 
-  $: todos = $store.todos
+  function mapState(state) {
+    todos = state.todos
+  }
 
-  const handleToggle = (e) => store.toggle(e.target.dataset.id)
+  function mapActions({ toggle }) {
+    handleToggle = (e) => toggle(e.target.dataset.id)
+  }
+
+  connect(mapState, mapActions)
 </script>
 
 <style scoped>

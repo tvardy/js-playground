@@ -1,11 +1,18 @@
 <script>
-  import { store } from '../store.js'
+  export let connect
 
+  let todos = []
   let all = 0
   let done = 0
 
-  $: all = $store.todos.length
-  $: done = $store.todos.filter(el => el.done).length
+  $: all = todos.length
+  $: done = todos.filter(el => el.done).length
+
+  function mapState(state) {
+    todos = state.todos
+  }
+
+  connect(mapState)
 </script>
 
 <style scoped>

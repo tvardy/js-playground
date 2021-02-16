@@ -1,13 +1,20 @@
 <script>
-  import { store } from '../store.js'
+  export let connect
 
+  const _ = undefined
   const _empty = ''
 
   let newTask = _empty
-  let submit = () => {
-    store.add(newTask)
-    newTask = _empty
+  let submit;
+
+  function mapActions({ add }) {
+    submit = () => {
+      add(newTask)
+      newTask = _empty
+    }
   }
+
+  connect(_, mapActions)
 </script>
 
 <style scoped>
