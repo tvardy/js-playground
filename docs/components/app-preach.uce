@@ -2,7 +2,7 @@
 export default {}
 
 <app-preach>
-<todos-input-preach></todos-input-preach>
-<todos-list-preach></todos-list-preach>
-<todos-footer-preach></todos-footer-preach>
+<todos-input></todos-input>
+<todos-list></todos-list>
+<todos-footer></todos-footer>
 </app-preach>

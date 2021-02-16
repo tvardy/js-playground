@@ -1,7 +1,7 @@
 <script type=module>export default{}
 </script>
 <app-stent>
-<todos-input-stent></todos-input-stent>
-<todos-list-stent></todos-list-stent>
-<todos-footer-stent></todos-footer-stent>
+<todos-input></todos-input>
+<todos-list></todos-list>
+<todos-footer></todos-footer>
 </app-stent>

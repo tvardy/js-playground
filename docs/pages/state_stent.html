@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Playground</title>
+
+    <link rel="stylesheet" href="../common.css" />
+    <link rel="stylesheet" href="../svelte.css" />
+
+    <script type="module" src="../state-stent.js" async></script>
+  </head>
+  <body>
+    <aside><a href="../index.html">← go back</a></aside>
+    <section>
+      <header>
+        <h2>
+          Managing global state with
+          <a href="https://www.npmjs.com/package/stent" target="_blank"> Stent </a>
+        </h2>
+      </header>
+      <div class="box">
+        <h3>Svelte</h3>
+        <div class="svelte"></div>
+      </div>
+      <div class="box">
+        <h3>µce-template</h3>
+        <div class="uce">
+          <app-stent />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h2>File size summary:</h2>
+      </header>
+      <div class="box wide">
+        <strong>Svelte scoped CSS:</strong> 235B<br />
+        <strong>Main JS file:</strong> 13kB<br />
+        <strong>Shared JS chunks:</strong> 33kB + 548B<br />
+        <strong>UCE components folder:</strong> 1.624kB
+      </div>
+    </section>
+  </body>
+</html>
