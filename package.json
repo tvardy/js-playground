@@ -11,7 +11,7 @@
     "build:prod": "npm run build -- prod",
     "build:ghpages": "rm -rf ./docs && npm run build:prod && mv ./dist ./docs && rm -rf ./docs/*.map",
     "postbuild": "npm-run-all -p copy:*",
-    "copy:html": "cp src/*.html dist/",
+    "copy:html": "cp src/*.html dist/ && cp -r src/pages -t dist",
     "copy:css": "cp src/common.css dist/",
     "copy:uce": "mkdir -p dist/components && uce-template src/components -o dist/components",
     "clean": "rm -rf dist",
@@ -27,9 +27,9 @@
   },
   "esbuild": {
     "entries": [
-      "src/main-stent.js",
-      "src/main-preach.js",
-      "src/main-stores.js"
+      "src/state-stent.js",
+      "src/state-preach.js",
+      "src/state-stores.js"
     ],
     "outdir": "dist"
   },

@@ -1,5 +1,5 @@
 <script type="module" setup>
-  import { connect } from '../store-preach.js'
+  import { connect } from '../store.js'
 
   const _ = undefined
   const _empty = ''

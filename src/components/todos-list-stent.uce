@@ -1,6 +1,6 @@
 <script type="module" setup>
   import { html, reactive } from '@uce';
-  import { connect } from '../store-stent.js'
+  import { connect } from '../store.js'
 
   const _self = this
 

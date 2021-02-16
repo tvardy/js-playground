@@ -1,5 +1,5 @@
 <script type="module" setup>
-  import { connect } from '../store-stent.js'
+  import { connect } from '../store.js'
 
   const _ = undefined
   const _empty = ''
