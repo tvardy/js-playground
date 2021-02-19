@@ -13,7 +13,7 @@
     "postbuild": "npm-run-all -p copy:* rename:*",
     "copy:html": "cp src/*.html dist/ && cp -r src/pages -t dist",
     "copy:css": "cp src/common.css dist/",
-    "copy:uce": "mkdir -p dist/components && uce-template src/components -o dist/components",
+    "copy:uce": "mkdir -p dist/components && uce-template src/js/components -o dist/components",
     "rename:css": "mv ./dist/chunk.*.css ./dist/svelte.css",
     "clean": "rm -rf dist",
     "format": "prettier --write \"./**/*.{js,cjs,html,css,scss,json,svelte}\"",
@@ -28,9 +28,11 @@
   },
   "esbuild": {
     "entries": [
-      "src/state-stent.js",
-      "src/state-preach.js",
-      "src/state-stores.js"
+      "src/js/state-stent.js",
+      "src/js/state-preach.js",
+      "src/js/state-stores.js",
+      "src/js/apprun_pocket_client.js",
+      "src/js/apprun_pocket_emitter.js"
     ],
     "outdir": "dist"
   },
@@ -52,6 +54,7 @@
   },
   "homepage": "https://github.com/tvardy/js-playground#readme",
   "dependencies": {
+    "apprun": "2.27.6",
     "nanoid": "3.1.20",
     "preach": "0.3.0",
     "stent": "8.0.4",
