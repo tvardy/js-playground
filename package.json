@@ -31,13 +31,13 @@
       "src/js/state-stent.js",
       "src/js/state-preach.js",
       "src/js/state-stores.js",
-      "src/js/apprun_pocket_client.js",
-      "src/js/apprun_pocket_emitter.js"
+      "src/js/apprun_ws_client.js",
+      "src/js/apprun_ws_emitter.js"
     ],
     "outdir": "dist"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
+    "*.js": "eslint --fix",
     "*.{js,html,scss}": "prettier --write"
   },
   "repository": {
