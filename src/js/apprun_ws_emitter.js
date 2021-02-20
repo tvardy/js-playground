@@ -1,27 +1,16 @@
+/* global io */
 import { app } from 'apprun/dist/apprun-html.esm.js'
 
 import { LEVELS, Log } from './tools/Logger.js'
 import { randomRange } from './utils/random.js'
-import { socket } from './utils/ws.js'
+
+import { constants } from './apprun_ws_common.js'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
 }
 
 Log.debug('AppRun Client script started!')
-
-const URL = 'wss://echo.websocket.org/'
-const APP_ROOT = document.querySelector('[data-app]')
-const NUMBERS = {
-  time: {
-    min: 567,
-    max: 1234
-  },
-  values: {
-    min: 100,
-    max: 200
-  }
-}
 
 const view = ({ status, sending }) => `
   <h1>Emitter Works!</h1>
@@ -33,7 +22,7 @@ const view = ({ status, sending }) => `
 const update = {
   async init (state) {
     try {
-      App.ws = await socket(URL)
+      App.ws = io(constants.URL)
 
       Log.debug('WS connected')
 
@@ -54,7 +43,7 @@ const update = {
   },
   wait (state) {
     if (state.sending) {
-      const time = randomRange(NUMBERS.time.min, NUMBERS.time.max)
+      const time = randomRange(constants.NUMBERS.time.min, constants.NUMBERS.time.max)
 
       setTimeout(() => App.run('sendValue'), time)
     }
@@ -62,11 +51,14 @@ const update = {
     return state
   },
   sendValue (state) {
-    const value = randomRange(NUMBERS.values.min, NUMBERS.values.max)
+    const value = randomRange(
+      constants.NUMBERS.values.min,
+      constants.NUMBERS.values.max
+    )
 
     Log.info('new value:', value)
 
-    App.ws.send(value)
+    App.ws.emit('data', value)
 
     App.run('wait')
 
@@ -86,6 +78,11 @@ const update = {
   }
 }
 
-const App = app.start(APP_ROOT, { status: 'connecting', sending: true }, view, update)
+const App = app.start(
+  constants.APP_ROOT,
+  { status: 'connecting', sending: true },
+  view,
+  update
+)
 
 App.run('init')

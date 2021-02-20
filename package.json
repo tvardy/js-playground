@@ -59,15 +59,15 @@
     "preach": "0.3.0",
     "stent": "8.0.4",
     "uce-loader": "2.0.0",
-    "uce-template": "0.4.2"
+    "uce-template": "0.5.1"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
     "browser-sync": "2.26.14",
     "browserslist": "4.16.3",
-    "esbuild": "0.8.44",
+    "esbuild": "0.8.49",
     "esbuild-svelte": "0.4.1",
-    "eslint": "7.19.0",
+    "eslint": "7.20.0",
     "eslint-config-standard": "16.0.2",
     "eslint-plugin-babel": "5.3.1",
     "eslint-plugin-import": "2.22.1",
@@ -81,7 +81,7 @@
     "onchange": "7.1.0",
     "pinst": "2.1.4",
     "prettier": "2.2.1",
-    "prettier-plugin-svelte": "2.1.4"
+    "prettier-plugin-svelte": "2.1.6"
   },
   "engines": {
     "node": "12.x"
