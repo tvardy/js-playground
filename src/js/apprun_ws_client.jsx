@@ -1,8 +1,8 @@
-/* global io */
-import { app } from 'apprun/dist/apprun-html.esm.js'
-
+/* global app, io */
 import { LEVELS, Log } from './tools/Logger.js'
 import { constants } from './apprun_ws_common.js'
+
+import { SimpleComponent } from './components/AppRunSimpleComponent.jsx'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
@@ -10,11 +10,13 @@ if (process.env.NODE_ENV === 'development') {
 
 Log.debug('AppRun Client script started!')
 
-const view = ({ status, value }) => `
-  <h1>Client Works!</h1>
-  <h2>Status: ${status}</h2>
-  <pre>${value}</pre>
-`
+const view = ({ status, value }) => (
+  <>
+    <h1>Client Works!</h1>
+    <h2>Status: {status}</h2>
+    <SimpleComponent value={value} />
+  </>
+)
 
 const update = {
   async init (state) {

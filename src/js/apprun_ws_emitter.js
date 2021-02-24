@@ -1,6 +1,4 @@
-/* global io */
-import { app } from 'apprun/dist/apprun-html.esm.js'
-
+/* global app, io */
 import { LEVELS, Log } from './tools/Logger.js'
 import { randomRange } from './utils/random.js'
 

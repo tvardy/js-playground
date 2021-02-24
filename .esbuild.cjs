@@ -14,7 +14,9 @@ const options = {
     splitting: true,
     plugins: [sveltePlugin()],
     target: list,
-    outdir: pack.esbuild.outdir,
+    jsxFactory: 'app.h',
+    jsxFragment: 'app.Fragment',
+    outdir: pack.esbuild.outdir
   },
   dev: {
     define: {

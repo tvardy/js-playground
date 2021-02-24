@@ -3,11 +3,11 @@ export const constants = {
   APP_ROOT: document.querySelector('[data-app]'),
   NUMBERS: {
     time: {
-      min: 321,
+      min: 21,
       max: 1234
     },
     values: {
-      min: 100,
+      min: 0,
       max: 200
     }
   }

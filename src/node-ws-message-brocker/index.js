@@ -17,5 +17,5 @@ io.on('connection', (socket) => {
 })
 
 http.listen(process.env.PORT || 8080, () => {
-  console.log('server listening...')
+  console.log('server listening...') // eslint-disable-line no-console
 })
