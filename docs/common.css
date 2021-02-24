@@ -27,11 +27,11 @@ body > * {
   margin: 1em auto;
 }
 
-aside a {
+body > aside a {
   text-decoration: none;
 }
 
-section {
+body > section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -39,7 +39,7 @@ section {
   padding: 1em;
 }
 
-section header {
+body > section header {
   width: 100%;
   text-align: center;
   border-bottom: 1px solid var(--light);
