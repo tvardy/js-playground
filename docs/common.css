@@ -1,6 +1,7 @@
 :root {
-  --dark: #999;
-  --light: #ccc;
+  --shade0: #ccc;
+  --shade1: #666;
+  --shade2: #333;
   --max-width: 1024px;
 }
 
@@ -11,6 +12,13 @@
 html {
   padding: 0;
   margin: 0;
+  background-color: var(--shade2);
+  color: var(--shade0);
+}
+
+a {
+  color: inherit;
+  font-weight: bold;
 }
 
 body {
@@ -18,7 +26,7 @@ body {
   max-width: var(--max-width);
   padding: 1em 0;
   margin: 0 auto;
-  box-shadow: 0 0 1em var(--dark);
+  box-shadow: 0 0 1em var(--shade1);
   min-height: 100vh;
 }
 
@@ -35,14 +43,14 @@ body > section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  outline: 1px solid var(--light);
+  outline: 1px solid var(--shade1);
   padding: 1em;
 }
 
 body > section header {
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid var(--light);
+  border-bottom: 1px solid var(--shade1);
   margin-bottom: 1em;
 }
 
@@ -51,7 +59,7 @@ body > section header {
 }
 
 .box {
-  outline: 1px solid var(--dark);
+  outline: 1px solid var(--shade1);
   padding: 1em;
   min-width: 49%;
 }

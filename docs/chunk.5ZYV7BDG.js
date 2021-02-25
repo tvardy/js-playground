@@ -327,7 +327,7 @@ function ir(t) {
       ;(e = tt('form')),
         (n = tt('input')),
         X(n, 'placeholder', 'Add new task...'),
-        X(n, 'class', 'svelte-12biwcu')
+        X(n, 'class', 'svelte-s6yrar')
     },
     m(r, c) {
       G(r, e, c),
@@ -2099,4 +2099,4 @@ var pc = {
 export { pc as a, ic as b, H as c, fc as d, rc as e, Ae as f, cs as g, V as h, As as i }
 /*! (c) Andrea Giammarchi - ISC */
 /*! (c) Andrea Giammarchi @webreflection ISC */
-//# sourceMappingURL=chunk.FQRIFGNU.js.map
+//# sourceMappingURL=chunk.VF4WIKS4.js.map
