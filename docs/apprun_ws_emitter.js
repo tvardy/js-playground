@@ -4,12 +4,15 @@ function s(t, n) {
   return Math.round(Math.random() * (n - t)) + t
 }
 o.debug('AppRun Client script started!')
-var a = ({ status: t, sending: n }) => `
-  <h1>Emitter Works!</h1>
-  <h2>Status: ${t}</h2>
-  <button onclick='app.run("toggle")'>${n ? 'Pause' : 'Play'}</button>
-  <p>See browser console if you want to trace the data being sent</p>
-`,
+var a = ({ status: t, sending: n }) =>
+    app.h(
+      app.Fragment,
+      null,
+      app.h('h1', null, 'Emitter Works!'),
+      app.h('h2', null, 'Status: ', t),
+      app.h('button', { onclick: "app.run('toggle')" }, n ? 'Pause' : 'Play'),
+      app.h('p', null, 'See browser console if you want to trace the data being sent')
+    ),
   i = {
     async init(t) {
       try {

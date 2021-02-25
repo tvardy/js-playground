@@ -32,7 +32,7 @@
       "src/js/state-preach.js",
       "src/js/state-stores.js",
       "src/js/apprun_ws_client.jsx",
-      "src/js/apprun_ws_emitter.js"
+      "src/js/apprun_ws_emitter.jsx"
     ],
     "outdir": "dist"
   },

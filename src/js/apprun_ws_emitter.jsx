@@ -10,12 +10,14 @@ if (process.env.NODE_ENV === 'development') {
 
 Log.debug('AppRun Client script started!')
 
-const view = ({ status, sending }) => `
-  <h1>Emitter Works!</h1>
-  <h2>Status: ${status}</h2>
-  <button onclick='app.run("toggle")'>${sending ? 'Pause' : 'Play'}</button>
-  <p>See browser console if you want to trace the data being sent</p>
-`
+const view = ({ status, sending }) => (
+  <>
+    <h1>Emitter Works!</h1>
+    <h2>Status: {status}</h2>
+    <button onclick="app.run('toggle')">{sending ? 'Pause' : 'Play'}</button>
+    <p>See browser console if you want to trace the data being sent</p>
+  </>
+)
 
 const update = {
   async init (state) {

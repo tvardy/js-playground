@@ -2,4 +2,3 @@
 tasks:
 - init: npm ci
   before: git config --global user.email $GIT_AUTHOR_EMAIL
-  command: nvm i 12
