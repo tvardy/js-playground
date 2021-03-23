@@ -32,7 +32,9 @@
       "src/js/state-preach.js",
       "src/js/state-stores.js",
       "src/js/apprun_ws_client.jsx",
-      "src/js/apprun_ws_emitter.jsx"
+      "src/js/apprun_ws_emitter.jsx",
+      "src/js/lz-chat_apprun.js",
+      "src/js/lz-chat_hyper.js"
     ],
     "outdir": "dist"
   },
@@ -55,11 +57,14 @@
   "homepage": "https://github.com/tvardy/js-playground#readme",
   "dependencies": {
     "apprun": "2.27.6",
+    "hypersimple": "0.4.1",
+    "lzwcompress": "0.7.1",
     "nanoid": "3.1.20",
     "preach": "0.3.0",
     "stent": "8.0.4",
     "uce-loader": "2.0.0",
-    "uce-template": "0.5.1"
+    "uce-template": "0.5.1",
+    "uhtml": "2.6.2"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",

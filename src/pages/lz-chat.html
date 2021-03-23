@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Playground</title>
+
+    <link rel="stylesheet" href="../common.css" />
+
+    <script src="https://unpkg.com/apprun@2.27.7" defer></script>
+    <script src="https://unpkg.com/pocket.io@0.1.5/min.js" defer></script>
+    <script type="module" src="../lz-chat_apprun.js" defer></script>
+    <script type="module" src="../lz-chat_hyper.js" defer></script>
+  </head>
+  <body>
+    <aside><a href="../index.html">← go back</a></aside>
+    <section>
+      <header>
+        <h2>
+          LZ Chat
+        </h2>
+        <p>
+          <a href="https://www.npmjs.com/package/apprun" target="_blank">AppRun</a>
+          +
+          <a href="https://www.npmjs.com/package/uhtml" target="_blank">µhtml</a>
+          vs.
+          <a href="https://www.npmjs.com/package/hypersimple" target="_blank">HyperSimple</a>
+          <br>
+          using
+          <a href="https://www.npmjs.com/package/lzwcompress" target="_blank">lzwCompress</a>
+          over
+          <a href="https://www.npmjs.com/package/pocket.io" target="_blank">Pocket.io</a>
+          for sending data
+        </p>
+      </header>
+      <div class="box">
+        <h3>AppRun</h3>
+        <div id="apprun"></div>
+      </div>
+      <div class="box">
+        <h3>HyperSimple</h3>
+        <div id="hypersimple"></div>
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h2>File size summary:</h2>
+      </header>
+      <div class="box wide">
+
+      </div>
+    </section>
+  </body>
+</html>
