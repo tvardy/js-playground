@@ -10,8 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "pocket.io": "^0.1.4",
-    "polka": "^0.5.2"
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "helmet": "4.4.1",
+    "pocket.io": "0.1.5"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

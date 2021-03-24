@@ -1,21 +1,28 @@
-const app = require('polka')()
+const http = require('http')
+const express = require('express')
 const cors = require('cors')
-const http = require('http').Server(app)
-const io = require('pocket.io')(http)
+const helmet = require('helmet')
+const pocket = require('pocket.io')
+
+const app = express()
+const server = http.Server(app)
+const io = pocket(server)
+
+const allowedStrings = ['data', 'message']
 
 app.use(cors())
+app.use(helmet())
 
 app.get('/', (_, res) => {
-  res.send('<h1>It works!</h1>')
+  res.send('<pre>It works!</pre>')
 })
 
 io.on('connection', (socket) => {
-  socket.on('data', (data) => {
-    // socket.broadcast.emit('data', data) // not working due to a bug in Pocket.io
-    io.emit('data', data)
+  allowedStrings.forEach((name) => {
+    socket.on(name, (data) => socket.broadcast.emit(name, data))
   })
 })
 
-http.listen(process.env.PORT || 8080, () => {
-  console.log('server listening...') // eslint-disable-line no-console
+server.listen(process.env.PORT || 8080, () => {
+  console.log('server is ready...')
 })
