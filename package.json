@@ -12,7 +12,7 @@
     "build:ghpages": "rm -rf ./docs && npm run build:prod && mv ./dist ./docs && rm -rf ./docs/*.map",
     "postbuild": "npm-run-all -p copy:* rename:*",
     "copy:html": "cp src/*.html dist/ && cp -r src/pages -t dist",
-    "copy:css": "cp src/common.css dist/",
+    "copy:css": "cp src/*.css dist/",
     "copy:uce": "mkdir -p dist/components && uce-template src/js/components -o dist/components",
     "rename:css": "mv ./dist/chunk.*.css ./dist/svelte.css",
     "clean": "rm -rf dist",
