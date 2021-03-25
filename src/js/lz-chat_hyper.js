@@ -3,6 +3,7 @@ import { LEVELS, Log } from './tools/Logger.js'
 import { comp, html, render } from 'hypersimple'
 
 import state from './lz-chat_state.js'
+import { constants } from './lz-chat_common.js'
 
 import Login from './components/lz-h_login.js'
 
@@ -12,21 +13,42 @@ if (process.env.NODE_ENV === 'development') {
 
 Log.debug('LZ Chat HypeSimple started!')
 
+let ws
+
 const actions = {
-  login(e) {
+  login (e) {
     e.preventDefault()
-    Log.debug('hypersimple login')
+
+    const name = e.target.elements.user.value
+
+    try {
+      ws = io(constants.URL)
+
+      ws.on('connect', () => {
+        this.connected(name)
+      })
+    } catch (e) {
+      Log.error('WS error:', e)
+
+      model.status = 'error'
+    }
+  },
+  connected (name) {
+    ws.on('message', (msg) => {
+      this.message(msg)
+    })
+
+    model.user = {
+      id: ws.id,
+      name
+    }
   }
 }
 
-const view = comp((state) => html`
-  <div>
-    ${!state.user.id && Login(state)}
-    ${state.user.id && html`<pre>[chat view]</pre>`}
-  </div>
-`)
+const model = { ...state, ...actions }
 
-render(
-  document.getElementById('hypersimple'),
-  () => view({ ...state, ...actions })
+const view = comp(
+  (props) => html` <div>${!props.user.id ? Login(props) : '[chat view]'}</div> `
 )
+
+render(document.getElementById('hypersimple'), () => view(model))

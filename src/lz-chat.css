@@ -1,4 +1,8 @@
-.box input {
+form.login {
+  padding: 2rem 0;
+}
+
+form.login input {
   display: block;
   margin: 0 auto;
 }
