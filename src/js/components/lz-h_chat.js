@@ -1,9 +1,11 @@
 import { comp, html } from 'hypersimple'
 
+import Message from './lz-h_message'
+
 const view = comp(
-  ({ messages, send }) => html`
+  ({ user, messages, send }) => html`
     <section class="box wide chat-box">
-      <pre>${JSON.stringify(messages, null, 2)}<pre>
+      ${messages.map((message) => Message({ userId: user.id, message }))}
     </section>
     <form class="box wide message" onSubmit=${send}>
       <input name="msg" placeholder="message box..." />

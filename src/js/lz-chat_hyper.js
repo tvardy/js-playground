@@ -1,17 +1,19 @@
-import { LEVELS, Log } from './tools/Logger.js'
+import { LEVELS, Log } from './tools/Logger'
 import { comp, html, render } from 'hypersimple'
 
-import state from './lz-chat_state.js'
-import { wsConnect, pack, unpack } from './lz-chat_common.js'
+import state from './lz-chat_state'
+import { wsConnect, pack, unpack } from './lz-chat_common'
 
-import Login from './components/lz-h_login.js'
-import Chat from './components/lz-h_chat.js'
+import Login from './components/lz-h_login'
+import Chat from './components/lz-h_chat'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
 }
 
 Log.debug('LZ Chat HyperSimple started!')
+
+const rootElem = document.getElementById('hypersimple')
 
 const actions = {
   login (e) {
@@ -57,6 +59,17 @@ const actions = {
     Log.debug('HyperSimple message:', data.user, data.msg)
 
     model.messages = model.messages.concat(data)
+
+    this.align()
+  },
+  align () {
+    const box = rootElem.querySelector('.chat-box')
+
+    setTimeout(() => {
+      if (box.scrollTop < box.scrollHeight) {
+        box.scrollTop = box.scrollHeight
+      }
+    }, 0)
   }
 }
 
@@ -64,4 +77,4 @@ const model = { ...state, ...actions }
 
 const view = comp((props) => html`${!props.user.id ? Login(props) : Chat(props)}`)
 
-render(document.getElementById('hypersimple'), () => view(model))
+render(rootElem, () => view(model))

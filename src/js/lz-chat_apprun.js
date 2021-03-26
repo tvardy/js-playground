@@ -1,12 +1,12 @@
 /* global app */
-import { LEVELS, Log } from './tools/Logger.js'
+import { LEVELS, Log } from './tools/Logger'
 import { render, html } from 'uhtml'
 
-import state from './lz-chat_state.js'
-import { wsConnect, pack, unpack } from './lz-chat_common.js'
+import state from './lz-chat_state'
+import { wsConnect, pack, unpack } from './lz-chat_common'
 
-import Login from './components/lz-u_login.js'
-import Chat from './components/lz-u_chat.js'
+import Login from './components/lz-u_login'
+import Chat from './components/lz-u_chat'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'development') {
 Log.debug('LZ Chat AppRun started!')
 
 app.render = render
+const rootElem = document.getElementById('apprun')
 
 const actions = {
   login (state, e) {
@@ -65,13 +66,25 @@ const actions = {
   message (state, data) {
     Log.debug('AppRun message:', data.user, data.msg)
 
+    App.run('align')
+
     return {
       ...state,
       messages: state.messages.concat(data)
     }
+  },
+  align () {
+    const box = rootElem.querySelector('.chat-box')
+
+    setTimeout(() => {
+      if (box.scrollTop < box.scrollHeight) {
+        box.scrollTop = box.scrollHeight
+      }
+    }, 0)
   }
 }
 
-const view = (state) => html`${!state.user.id ? Login : Chat(state.messages)}`
+const view = (state) =>
+  html`${!state.user.id ? Login : Chat(state.user, state.messages)}`
 
-const App = app.start(document.getElementById('apprun'), state, view, actions)
+const App = app.start(rootElem, state, view, actions)
