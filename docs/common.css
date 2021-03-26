@@ -61,12 +61,12 @@ body > section header {
 .box {
   outline: 1px solid var(--shade1);
   padding: 1em;
-  min-width: 49%;
+  width: 49%;
 }
 
 .box.middle {
   margin: 0 auto;
-  width: 50%;
+  width: 66%;
 }
 
 .box.wide {
