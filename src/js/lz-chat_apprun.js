@@ -6,6 +6,7 @@ import state from './lz-chat_state.js'
 import { wsConnect } from './lz-chat_common.js'
 
 import Login from './components/lz-u_login.js'
+import Chat from './components/lz-u_chat.js'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
@@ -23,7 +24,9 @@ const actions = {
 
     try {
       wsConnect().then((sock) => {
-        sock.on('message', (msg) => {
+        App.sock = sock
+
+        App.sock.on('message', (msg) => {
           App.run('message', msg)
         })
 
@@ -39,15 +42,36 @@ const actions = {
     }
   },
   connected (state, user) {
-    Log.debug('AppRun connected', user)
+    Log.debug('AppRun connected:', user)
 
     return {
       ...state,
       user
     }
+  },
+  send (state, e) {
+    e.preventDefault()
+
+    const msg = e.target.elements.msg.value
+    const data = { user: state.user, msg }
+
+    e.target.elements.msg.value = ''
+
+    Log.debug('AppRun send:', msg)
+
+    App.sock.emit('message', data)
+    App.run('message', data)
+  },
+  message (state, data) {
+    Log.debug('AppRun message:', data.user, data.msg)
+
+    return {
+      ...state,
+      messages: state.messages.concat(data)
+    }
   }
 }
 
-const view = (state) => html` ${!state.user.id ? Login : '[chat view]'} `
+const view = (state) => html`${!state.user.id ? Login : Chat(state.messages)}`
 
 const App = app.start(document.getElementById('apprun'), state, view, actions)

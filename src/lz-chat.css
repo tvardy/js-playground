@@ -1,8 +1,21 @@
-form.login {
+.lz-chat input {
+  padding: .5em;
+}
+
+.lz-chat form.login {
   padding: 2rem 0;
 }
 
-form.login input {
+.lz-chat form.login input {
   display: block;
   margin: 0 auto;
+}
+
+.lz-chat form.message input {
+  width: 100%;
+}
+
+.lz-chat .chat-box {
+  height: 20em;
+  margin-bottom: .5em;
 }

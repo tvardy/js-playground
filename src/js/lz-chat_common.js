@@ -1,4 +1,8 @@
 /* global io */
+import { pack, unpack } from 'lzwcompress'
+
+export { pack, unpack }
+
 export const constants = {
   URL: 'wss://node-ws-message-broker.herokuapp.com/'
 }

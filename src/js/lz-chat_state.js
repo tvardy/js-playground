@@ -1,5 +1,6 @@
 const state = {
-  user: {}
+  user: {},
+  messages: []
 }
 
 export default state
