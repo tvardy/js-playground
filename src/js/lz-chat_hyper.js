@@ -2,7 +2,7 @@ import { LEVELS, Log } from './tools/Logger.js'
 import { comp, html, render } from 'hypersimple'
 
 import state from './lz-chat_state.js'
-import { wsConnect } from './lz-chat_common.js'
+import { wsConnect, pack, unpack } from './lz-chat_common.js'
 
 import Login from './components/lz-h_login.js'
 import Chat from './components/lz-h_chat.js'
@@ -24,7 +24,7 @@ const actions = {
         this.sock = sock
 
         this.sock.on('message', (msg) => {
-          this.message(msg)
+          this.message(unpack(msg))
         })
 
         this.connected({ id: sock.id, name })
@@ -50,7 +50,7 @@ const actions = {
 
     Log.debug('HyperSimple send:', msg)
 
-    this.sock.emit('message', data)
+    this.sock.emit('message', pack(data))
     this.message(data)
   },
   message (data) {

@@ -3,7 +3,7 @@ import { LEVELS, Log } from './tools/Logger.js'
 import { render, html } from 'uhtml'
 
 import state from './lz-chat_state.js'
-import { wsConnect } from './lz-chat_common.js'
+import { wsConnect, pack, unpack } from './lz-chat_common.js'
 
 import Login from './components/lz-u_login.js'
 import Chat from './components/lz-u_chat.js'
@@ -27,7 +27,7 @@ const actions = {
         App.sock = sock
 
         App.sock.on('message', (msg) => {
-          App.run('message', msg)
+          App.run('message', unpack(msg))
         })
 
         App.run('connected', { id: sock.id, name })
@@ -59,7 +59,7 @@ const actions = {
 
     Log.debug('AppRun send:', msg)
 
-    App.sock.emit('message', data)
+    App.sock.emit('message', pack(data))
     App.run('message', data)
   },
   message (state, data) {
