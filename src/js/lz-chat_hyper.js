@@ -1,9 +1,8 @@
-/* global io */
 import { LEVELS, Log } from './tools/Logger.js'
 import { comp, html, render } from 'hypersimple'
 
 import state from './lz-chat_state.js'
-import { constants } from './lz-chat_common.js'
+import { wsConnect } from './lz-chat_common.js'
 
 import Login from './components/lz-h_login.js'
 
@@ -13,8 +12,6 @@ if (process.env.NODE_ENV === 'development') {
 
 Log.debug('LZ Chat HypeSimple started!')
 
-let ws
-
 const actions = {
   login (e) {
     e.preventDefault()
@@ -22,10 +19,12 @@ const actions = {
     const name = e.target.elements.user.value
 
     try {
-      ws = io(constants.URL)
+      wsConnect().then((sock) => {
+        sock.on('message', (msg) => {
+          this.message(msg)
+        })
 
-      ws.on('connect', () => {
-        this.connected(name)
+        this.connected({ id: sock.id, name })
       })
     } catch (e) {
       Log.error('WS error:', e)
@@ -33,15 +32,10 @@ const actions = {
       model.status = 'error'
     }
   },
-  connected (name) {
-    ws.on('message', (msg) => {
-      this.message(msg)
-    })
+  connected (user) {
+    Log.debug('HyperSimple connected', user)
 
-    model.user = {
-      id: ws.id,
-      name
-    }
+    model.user = user
   }
 }
 

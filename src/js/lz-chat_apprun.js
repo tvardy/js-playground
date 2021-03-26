@@ -1,9 +1,9 @@
-/* global app, io */
+/* global app */
 import { LEVELS, Log } from './tools/Logger.js'
 import { render, html } from 'uhtml'
 
 import state from './lz-chat_state.js'
-import { constants } from './lz-chat_common.js'
+import { wsConnect } from './lz-chat_common.js'
 
 import Login from './components/lz-u_login.js'
 
@@ -16,16 +16,18 @@ Log.debug('LZ Chat AppRun started!')
 app.render = render
 
 const actions = {
-  login (_, e) {
+  login (state, e) {
     e.preventDefault()
 
     const name = e.target.elements.user.value
 
     try {
-      App.ws = io(constants.URL)
+      wsConnect().then((sock) => {
+        sock.on('message', (msg) => {
+          App.run('message', msg)
+        })
 
-      App.ws.on('connect', () => {
-        App.run('connected', name)
+        App.run('connected', { id: sock.id, name })
       })
     } catch (e) {
       Log.error('WS error:', e)
@@ -36,17 +38,12 @@ const actions = {
       }
     }
   },
-  connected (_, name) {
-    App.ws.on('message', (msg) => {
-      App.run('message', msg)
-    })
+  connected (state, user) {
+    Log.debug('AppRun connected', user)
 
     return {
       ...state,
-      user: {
-        id: App.ws.id,
-        name
-      }
+      user
     }
   }
 }
