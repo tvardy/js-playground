@@ -47,6 +47,7 @@
       data = []
 
       setTimeout(() => {
+        // TODO: try using a WebWorker here
         data = generate(numberOfRecords)
       }, 0)
     }
