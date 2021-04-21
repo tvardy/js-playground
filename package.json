@@ -34,7 +34,8 @@
       "src/js/apprun_ws_client.jsx",
       "src/js/apprun_ws_emitter.jsx",
       "src/js/lz-chat_apprun.js",
-      "src/js/lz-chat_hyper.js"
+      "src/js/lz-chat_hyper.js",
+      "src/js/lz-test.js"
     ],
     "outdir": "dist"
   },
@@ -57,6 +58,7 @@
   "homepage": "https://github.com/tvardy/js-playground#readme",
   "dependencies": {
     "apprun": "2.28.3",
+    "faker": "5.5.3",
     "hypersimple": "0.4.1",
     "lzwcompress": "0.7.1",
     "nanoid": "3.1.22",
