@@ -1,33 +1,45 @@
 <script>
-  import { fake, datatype } from 'faker'
   import lzw from 'lzwcompress'
   import { pack, constants } from '../lz-chat_common.js'
 
-  function Record() {
-    return {
-      id: datatype.uuid(),
-      firstName: fake('{{name.firstName}}'),
-      lastName: fake('{{name.lastName}}'),
-      avatarUrl: fake('{{image.avatar}}'),
-      email: fake('{{internet.email}}'),
-      phone: fake('{{phone.phoneNumberFormat}}'),
-      isPremium: datatype.boolean(),
-      list: Array.from({ length: datatype.number({ min: 10, max: 15 }) }, ChildRecord)
-    }
-  }
+  const generator = new SideWorker(
+    '/SideWorker.min.js',
+    function() {
+      importScripts('https://unpkg.com/faker@5.5.3/dist/faker.min.js')
 
-  function ChildRecord() {
-    return {
-      id: datatype.uuid(),
-      title: fake('{{commerce.productName}}'),
-      amount: datatype.number({ min: 10, max: 20 }),
-      created: new Date(fake('{{date.past}}')).toISOString()
-    }
-  }
+      const { fake, datatype } = faker
 
-  function generate(length) {
-    return Array.from({ length }, Record)
-  }
+      function Record() {
+        return {
+          id: datatype.uuid(),
+          firstName: fake('{{name.firstName}}'),
+          lastName: fake('{{name.lastName}}'),
+          avatarUrl: fake('{{image.avatar}}'),
+          email: fake('{{internet.email}}'),
+          phone: fake('{{phone.phoneNumberFormat}}'),
+          isPremium: datatype.boolean(),
+          list: Array.from({ length: datatype.number({ min: 10, max: 15 }) }, ChildRecord)
+        }
+      }
+
+      function ChildRecord() {
+        return {
+          id: datatype.uuid(),
+          title: fake('{{commerce.productName}}'),
+          amount: datatype.number({ min: 10, max: 20 }),
+          created: new Date(fake('{{date.past}}')).toISOString()
+        }
+      }
+
+      self.generate = (length) => Array.from({ length }, Record)
+    }
+  )
+
+  generator.method(
+    'run',
+    (num) => self.generate(num),
+    res => data = res
+  )
 
   function handleKeyDown(e) {
     if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
@@ -47,12 +59,10 @@
       data = []
 
       setTimeout(() => {
-        // TODO: try using a WebWorker here
-        data = generate(numberOfRecords)
+        generator.run(numberOfRecords)
       }, 0)
     }
   }
-
 
   $: processing = Array.isArray(data) && !data.length
   $: ready = Array.isArray(data) && data.length
@@ -110,6 +120,7 @@ JSON string length: { lengths.json }
 Zipped decimals string length: { lengths['10'] } ({ percentage['10'] } %)
 Zipped 32-bit string length: { lengths['32'] } ({ percentage['32'] } %)
 </pre>
+<!-- TODO: add toggles for `values['10']` and `values['32']` -->
 <div class="lz-data">
   <details>
     <summary>toggle data</summary>

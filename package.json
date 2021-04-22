@@ -13,6 +13,7 @@
     "postbuild": "npm-run-all -p copy:* rename:*",
     "copy:html": "cp src/*.html dist/ && cp -r src/pages -t dist",
     "copy:css": "cp src/*.css dist/",
+    "copy:js": "cp ./node_modules/@78nine/sideworker/SideWorker.min.js dist/SideWorker.min.js",
     "copy:uce": "mkdir -p dist/components && uce-template src/js/components -o dist/components",
     "rename:css": "mv ./dist/chunk-*.css ./dist/svelte.css",
     "clean": "rm -rf dist",
@@ -57,6 +58,7 @@
   },
   "homepage": "https://github.com/tvardy/js-playground#readme",
   "dependencies": {
+    "@78nine/sideworker": "github:78nine/SideWorker",
     "apprun": "2.28.3",
     "faker": "5.5.3",
     "hypersimple": "0.4.1",
