@@ -1,10 +1,11 @@
 <script>
+  import SideWorker from '@78nine/sideworker'
   import lzw from 'lzwcompress'
   import { pack, constants } from '../lz-chat_common.js'
 
-  const generator = new SideWorker(
-    '/SideWorker.min.js',
-    function() {
+  const generator = new SideWorker({
+    debug: true,
+    init: () => {
       importScripts('https://unpkg.com/faker@5.5.3/dist/faker.min.js')
 
       const { fake, datatype } = faker
@@ -33,13 +34,9 @@
 
       self.generate = (length) => Array.from({ length }, Record)
     }
-  )
+  })
 
-  generator.method(
-    'run',
-    (num) => self.generate(num),
-    res => data = res
-  )
+  generator.define('generate', (num) => self.generate(num))
 
   function handleKeyDown(e) {
     if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
@@ -52,15 +49,13 @@
     }
   }
 
-  function run() {
+  async function run() {
     numberOfRecords = parseInt(numberOfRecords)
 
     if (numberOfRecords > 0) {
       data = []
 
-      setTimeout(() => {
-        generator.run(numberOfRecords)
-      }, 0)
+      data = await generator.run.generate(numberOfRecords)
     }
   }
 
@@ -120,11 +115,22 @@ JSON string length: { lengths.json }
 Zipped decimals string length: { lengths['10'] } ({ percentage['10'] } %)
 Zipped 32-bit string length: { lengths['32'] } ({ percentage['32'] } %)
 </pre>
-<!-- TODO: add toggles for `values['10']` and `values['32']` -->
 <div class="lz-data">
   <details>
-    <summary>toggle data</summary>
+    <summary>toggle JSON data</summary>
     <pre>{ values.jsonPretty }</pre>
+  </details>
+</div>
+<div class="lz-data wrap">
+  <details>
+    <summary>toggle LZipped decimal data</summary>
+    <pre>{ values[10] }</pre>
+  </details>
+</div>
+<div class="lz-data wrap">
+  <details>
+    <summary>toggle LZipped 32-bit data</summary>
+    <pre>{ values['32'] }</pre>
   </details>
 </div>
 {/if}

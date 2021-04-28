@@ -26,3 +26,8 @@
   overflow: scroll;
 
 }
+
+.lz-data.wrap details pre {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
