@@ -22,8 +22,7 @@ var fe = () => URL.createObjectURL(new Blob()).split('/').pop()
 function pe({ debug: e, init: t } = {}, ...i) {
   let d = ue
       .toString()
-      .replace(/^\(debug\) => {/, `const debug = ${e ? 1 : 0};`)
-      .replace(/^e=>{/, `const e=${e ? 1 : 0};`)
+      .replace(/^\(?([a-z]+)\)?\s*=>\s*{/, (c, o) => `const ${o}=${e ? 1 : 0};`)
       .replace(/}$/, ''),
     h = URL.createObjectURL(new Blob([d], { type: 'text/javascript' }))
   ;(this.worker = new Worker(h)),
@@ -31,23 +30,23 @@ function pe({ debug: e, init: t } = {}, ...i) {
     (this.func = null),
     (this._cb = new Map()),
     (this.run = {}),
-    (this.callFunction = (c, ...a) => {
-      this.worker.postMessage(c), this.worker.postMessage(a)
+    (this.callFunction = (c, ...o) => {
+      this.worker.postMessage(c), this.worker.postMessage(o)
     }),
-    (this.define = (c, a) => {
-      this.callFunction('define', c, a.toString()),
+    (this.define = (c, o) => {
+      this.callFunction('define', c, o.toString()),
         (this.run[c] = (...u) =>
-          new Promise((f, o) => {
+          new Promise((f, a) => {
             let n = `${c}:${fe()}`
-            this._cb.set(n, { resolve: f, reject: o }), this.callFunction(n, ...u)
+            this._cb.set(n, { resolve: f, reject: a }), this.callFunction(n, ...u)
           }))
     }),
     this.worker.addEventListener('message', (c) => {
       if (!this.func) this.func = c.data
       else {
-        let [a, ...u] = c.data,
+        let [o, ...u] = c.data,
           f = this._cb.get(this.func)
-        a ? f.reject(a) : f.resolve(...u),
+        o ? f.reject(o) : f.resolve(...u),
           this._cb.delete(this.func),
           (this.func = null)
       }
@@ -64,11 +63,11 @@ var ee = pe,
     function c() {
       ;(this.func = !1),
         (this.define = (u, f) => {
-          let o = new Function('return ' + f)()
+          let a = new Function('return ' + f)()
           this[u] = (n, s) => {
             self.postMessage(h(u, n))
             try {
-              let l = o.apply(this, s)
+              let l = a.apply(this, s)
               self.postMessage([, l])
             } catch (l) {
               self.postMessage([l])
@@ -77,26 +76,26 @@ var ee = pe,
           }
         })
     }
-    let a = new c()
+    let o = new c()
     self.addEventListener('message', (u) => {
-      if (a.func) {
-        let f = a.func,
-          [o, n] = d(f)
+      if (o.func) {
+        let f = o.func,
+          [a, n] = d(f)
         if (
-          ((a.func = !1),
+          ((o.func = !1),
           e &&
             console.debug(
-              o === 'define' ? `Defining "${u.data[0]}"` : `Calling "${o}" (id: ${n})`
+              a === 'define' ? `Defining "${u.data[0]}"` : `Calling "${a}" (id: ${n})`
             ),
-          a[o])
+          o[a])
         ) {
-          let s = o === 'define' && !n ? u.data : [n, u.data]
-          a[o].apply(a, s)
-        } else console.error(t, a[o])
+          let s = a === 'define' && !n ? u.data : [n, u.data]
+          o[a].apply(o, s)
+        } else console.error(t, o[a])
       } else {
-        a.func = u.data
+        o.func = u.data
         let [f] = d(u.data)
-        a[f] || console.error(t, f)
+        o[f] || console.error(t, f)
       }
     })
   }
@@ -121,10 +120,10 @@ function ie(e) {
     d,
     h,
     c = e[1].json + '',
-    a,
+    o,
     u,
     f = e[1]['10'] + '',
-    o,
+    a,
     n,
     s = e[3]['10'] + '',
     l,
@@ -166,10 +165,10 @@ function ie(e) {
         (d = _(e[2])),
         (h = _(`
 JSON string length: `)),
-        (a = _(c)),
+        (o = _(c)),
         (u = _(`
 Zipped decimals string length: `)),
-        (o = _(f)),
+        (a = _(f)),
         (n = _(' (')),
         (l = _(s)),
         (b = _(` %)
@@ -212,9 +211,9 @@ Zipped 32-bit string length: `)),
         r(t, i),
         r(t, d),
         r(t, h),
-        r(t, a),
-        r(t, u),
         r(t, o),
+        r(t, u),
+        r(t, a),
         r(t, n),
         r(t, l),
         r(t, b),
@@ -246,8 +245,8 @@ Zipped 32-bit string length: `)),
     },
     p(p, g) {
       g & 4 && j(d, p[2]),
-        g & 2 && c !== (c = p[1].json + '') && j(a, c),
-        g & 2 && f !== (f = p[1]['10'] + '') && j(o, f),
+        g & 2 && c !== (c = p[1].json + '') && j(o, c),
+        g & 2 && f !== (f = p[1]['10'] + '') && j(a, f),
         g & 8 && s !== (s = p[3]['10'] + '') && j(l, s),
         g & 2 && m !== (m = p[1]['32'] + '') && j(L, m),
         g & 8 && S !== (S = p[3]['32'] + '') && j(E, S),
@@ -266,10 +265,10 @@ function ke(e) {
     d,
     h,
     c,
-    a,
+    o,
     u,
     f,
-    o,
+    a,
     n = e[4] && se(e),
     s = e[5] && ie(e)
   return {
@@ -281,7 +280,7 @@ function ke(e) {
         (h = _(e[2])),
         (c = N()),
         n && n.c(),
-        (a = N()),
+        (o = N()),
         s && s.c(),
         (u = me()),
         v(d, 'contenteditable', ''),
@@ -296,16 +295,16 @@ function ke(e) {
         e[2] !== void 0 && (d.innerHTML = e[2]),
         w(l, c, b),
         n && n.m(l, b),
-        w(l, a, b),
+        w(l, o, b),
         s && s.m(l, b),
         w(l, u, b),
-        f || ((o = [te(d, 'keydown', e[6]), te(d, 'input', e[8])]), (f = !0))
+        f || ((a = [te(d, 'keydown', e[6]), te(d, 'input', e[8])]), (f = !0))
     },
     p(l, [b]) {
       b & 4 && j(h, l[2]),
         b & 4 && l[2] !== d.innerHTML && (d.innerHTML = l[2]),
         l[4]
-          ? n || ((n = se(l)), n.c(), n.m(a.parentNode, a))
+          ? n || ((n = se(l)), n.c(), n.m(o.parentNode, o))
           : n && (n.d(1), (n = null)),
         l[5]
           ? s
@@ -319,11 +318,11 @@ function ke(e) {
       l && k(t),
         l && k(c),
         n && n.d(l),
-        l && k(a),
+        l && k(o),
         s && s.d(l),
         l && k(u),
         (f = !1),
-        ge(o)
+        ge(a)
     },
   }
 }
@@ -359,16 +358,16 @@ function we(e, t, i) {
       },
     })
   c.define('generate', (m) => self.generate(m))
-  function a(m) {
-    !m.altKey && !m.ctrlKey && !m.metaKey && !m.shiftKey && i(7, (o = null)),
+  function o(m) {
+    !m.altKey && !m.ctrlKey && !m.metaKey && !m.shiftKey && i(7, (a = null)),
       m.which === 13 && (m.preventDefault(), u())
   }
   async function u() {
     i(2, (f = parseInt(f))),
-      f > 0 && (i(7, (o = [])), i(7, (o = await c.run.generate(f))))
+      f > 0 && (i(7, (a = [])), i(7, (a = await c.run.generate(f))))
   }
   let f = 0,
-    o = null,
+    a = null,
     n = { json: null, jsonPretty: null, 10: null, 32: null },
     s = { json: null, 10: null, 32: null },
     l = { 10: null, 32: null }
@@ -378,22 +377,22 @@ function we(e, t, i) {
   return (
     (e.$$.update = () => {
       if (e.$$.dirty & 128) {
-        e: i(4, (d = Array.isArray(o) && !o.length))
+        e: i(4, (d = Array.isArray(a) && !a.length))
       }
       if (e.$$.dirty & 128) {
-        e: i(5, (h = Array.isArray(o) && o.length))
+        e: i(5, (h = Array.isArray(a) && a.length))
       }
       if (e.$$.dirty & 128) {
-        e: i(0, (n.json = JSON.stringify(o)), n)
+        e: i(0, (n.json = JSON.stringify(a)), n)
       }
       if (e.$$.dirty & 128) {
-        e: i(0, (n.jsonPretty = JSON.stringify(o, null, 2)), n)
+        e: i(0, (n.jsonPretty = JSON.stringify(a, null, 2)), n)
       }
       if (e.$$.dirty & 1) {
         e: i(0, (n['10'] = le.default.pack(n.json).join(he.compress.sep)), n)
       }
       if (e.$$.dirty & 128) {
-        e: i(0, (n['32'] = be(o)), n)
+        e: i(0, (n['32'] = be(a)), n)
       }
       if (e.$$.dirty & 1) {
         e: i(1, (s.json = n.json.length), s)
@@ -411,7 +410,7 @@ function we(e, t, i) {
         e: i(3, (l['32'] = ((s['32'] / s.json) * 100).toFixed(2)), l)
       }
     }),
-    [n, s, f, l, d, h, a, o, b]
+    [n, s, f, l, d, h, o, a, b]
   )
 }
 var re = class extends de {
