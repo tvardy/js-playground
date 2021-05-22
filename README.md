@@ -21,7 +21,7 @@ Another possible step here would be using the components as **micro-frontends** 
 
 [AppRun](https://github.com/yysun/apprun) "is a JavaScript library for building reliable, high-performance web applications using the Elm-inspired architecture, events, and components."
 
-[Pocket.io](https://github.com/WebReflection/pocket.io) - is "a minimalistic version of [socket.io](https://socket.io/) that weights about 1K instead of 60K."
+[Pocket.io](https://github.com/WebReflection/pocket.io) is "a minimalistic version of [socket.io](https://socket.io/) that weights about 1K instead of 60K."
 
 The demo page consists of three elements:
 1. a simple [Message Broker](/src/node-ws-message-brocker/index.js) server
@@ -29,6 +29,10 @@ The demo page consists of three elements:
 3. a [Client](https://tvardy.github.io/js-playground/pages/apprun_ws_client.html) page connected to the same Message Broker and just reading the data and showing it with additional information if the new number is higher or lower than the previous one.
 
 It's a good example of showing stock or bookmaker price changes in real-time with lightweight JS tools.
+
+## LZ Chat
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyMjI1NDY1Ml19
+eyJoaXN0b3J5IjpbNzEyNTk5MTM1XX0=
 -->
