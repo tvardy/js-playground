@@ -2,7 +2,8 @@ import { LEVELS, Log } from './tools/Logger'
 import { comp, html, render } from 'hypersimple'
 
 import state from './lz-chat_state'
-import { wsConnect, pack, unpack } from './lz-chat_common'
+import { wsConnect } from './lz-chat_common'
+import { pack, unpack } from './utils/lzip.js'
 
 import Login from './components/lz-h_login'
 import Chat from './components/lz-h_chat'

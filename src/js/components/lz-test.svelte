@@ -1,7 +1,7 @@
 <script>
   import SideWorker from '@78nine/sideworker'
   import lzw from 'lzwcompress'
-  import { pack, constants } from '../lz-chat_common.js'
+  import { pack, compress } from '../utils/lzip.js'
 
   const generator = new SideWorker({
     debug: true,
@@ -64,7 +64,7 @@
 
   $: values.json = JSON.stringify(data)
   $: values.jsonPretty = JSON.stringify(data, null, 2)
-  $: values['10'] = lzw.pack(values.json).join(constants.compress.sep)
+  $: values['10'] = lzw.pack(values.json).join(compress.sep)
   $: values['32'] = pack(data)
 
   $: lengths.json = values.json.length

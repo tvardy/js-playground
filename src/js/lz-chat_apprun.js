@@ -3,7 +3,8 @@ import { LEVELS, Log } from './tools/Logger'
 import { render, html } from 'uhtml'
 
 import state from './lz-chat_state'
-import { wsConnect, pack, unpack } from './lz-chat_common'
+import { wsConnect } from './lz-chat_common'
+import { pack, unpack } from './utils/lzip.js'
 
 import Login from './components/lz-u_login'
 import Chat from './components/lz-u_chat'
