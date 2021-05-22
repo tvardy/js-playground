@@ -24,5 +24,5 @@ io.on('connection', (socket) => {
 })
 
 server.listen(process.env.PORT || 8080, () => {
-  console.log('server is ready...')
+  console.log('server is ready...') // eslint-disable-line no-console
 })

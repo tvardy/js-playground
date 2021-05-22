@@ -7,12 +7,6 @@ module.exports = {
   parser: 'babel-eslint',
   extends: ['standard'],
   plugins: ['babel', 'svelte3'],
-  overrides: [
-    {
-      files: ['*.svelte'],
-      processor: 'svelte3/svelte3',
-    },
-  ],
   parserOptions: {
     ecmaVersion: 6,
   },
@@ -20,4 +14,13 @@ module.exports = {
     'no-console': ['warn'],
     'no-debugger': ['error'],
   },
+  overrides: [
+    {
+      files: ['*.svelte'],
+      processor: 'svelte3/svelte3',
+      rules: {
+        'no-multiple-empty-lines': ['error', { max: 2, maxBOF: 2, maxEOF: 0 }],
+      },
+    },
+  ],
 }

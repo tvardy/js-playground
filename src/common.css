@@ -5,7 +5,9 @@
   --max-width: 1024px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
