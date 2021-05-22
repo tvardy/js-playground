@@ -1,5 +1,4 @@
 module.exports = {
-  ignorePatterns: ["docs/*.*"],
   env: {
     browser: true,
     es2021: true,
@@ -7,7 +6,13 @@ module.exports = {
   },
   parser: 'babel-eslint',
   extends: ['standard'],
-  plugins: ['babel'],
+  plugins: ['babel', 'svelte3'],
+  overrides: [
+    {
+      files: ['*.svelte'],
+      processor: 'svelte3/svelte3',
+    },
+  ],
   parserOptions: {
     ecmaVersion: 6,
   },

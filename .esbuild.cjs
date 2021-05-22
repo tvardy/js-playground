@@ -16,7 +16,7 @@ const options = {
     target: list,
     jsxFactory: 'app.h',
     jsxFragment: 'app.Fragment',
-    outdir: pack.esbuild.outdir
+    outdir: pack.esbuild.outdir,
   },
   dev: {
     define: {
@@ -31,6 +31,4 @@ const options = {
   },
 }
 
-esbuild
-  .build(Object.assign({}, options._, options[env]))
-  .catch(() => process.exit(1))
+esbuild.build(Object.assign({}, options._, options[env])).catch(() => process.exit(1))
