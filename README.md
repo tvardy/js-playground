@@ -1,4 +1,4 @@
-# See all in action
+# See it all in action
 
 https://tvardy.github.io/js-playground
 
@@ -20,7 +20,7 @@ As both applications are connected to the same store, the changes made on one si
 Another possible step here would be using the components as **micro-frontends** (e.g. take header from Svelte version, tasks list written with uce-template, and the footer written with another technology)
 
 
-## AppRun + Pocket.io
+## AppRun + `Pocket.io`
 
 [AppRun](https://github.com/yysun/apprun) "is a JavaScript library for building reliable, high-performance web applications using the Elm-inspired architecture, events, and components."
 
@@ -44,7 +44,7 @@ Another approach to the Lightweight State Management. This time [AppRun](https:/
 
 ### Secondly
 
-A simple chat application using the same Message Broker and pocket.io client library
+A simple chat application using the same **Message Broker** and `pocket.io` for Web Socket communication.
 
 ### Thirdly
 
@@ -60,6 +60,3 @@ So I decided to check at what level of data length can I acctually benefit of th
 I'm using [faker](https://www.npmjs.com/package/faker) to create some realistic JSON data bundle and then trying to pack it and compare the results. I found out that using a [little trick](/src/js/utils/lzip.js) of converting an array of decimal numbers (produced by lzwCompress) into their 32-bit equivalents we can get even higher compression.
 
 This test (and quite havy fake-data creation) pushed me also into creating the [SideWorker](https://github.com/78nine/SideWorker) package. You're encouraged to read more in its README ;)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNjcyMTk3Mzc5XX0=
--->
