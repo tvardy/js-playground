@@ -32,7 +32,20 @@ It's a good example of showing stock or bookmaker price changes in real-time wit
 
 ## LZ Chat
 
+Few different things being played with at the same time
+
+### Firstly
+
+Another approach to the Lightweight State Management. This time [AppRun](https://www.npmjs.com/package/apprun) + [µhtml](https://www.npmjs.com/package/uhtml) vs. [HyperSimple](https://www.npmjs.com/package/hypersimple)
+
+### Secondly
+
+A simple chat application using the same Message Broker and pocket.io client library
+
+### Thirdly
+
+The messages in the chat are not being sent in plain text. Instead we're using [lzwCompress](https://www.npmjs.com/package/lzwcompress) and a small additional data "mangling" operation (more on that in the next chapter)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzEyNTk5MTM1XX0=
+eyJoaXN0b3J5IjpbNjkyODgwMzk5XX0=
 -->
