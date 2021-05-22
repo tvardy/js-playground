@@ -8,21 +8,21 @@ import {
   i as y,
   j as _,
   k as N,
-  l as me,
+  l as ce,
   m as te,
   o as v,
   p as j,
-  s as ce,
+  s as me,
   y as _e,
   z as de,
 } from './chunk-A37PCSWK.js'
-import { a as Re, b as he, c as be } from './chunk-3PD2PFOE.js'
+import { a as Re, b as he, c as be } from './chunk-AJ7XJ6D3.js'
 import { d as Ee, g as je } from './chunk-SLFZ277Q.js'
 var fe = () => URL.createObjectURL(new Blob()).split('/').pop()
 function pe({ debug: e, init: t } = {}, ...i) {
   let d = ue
       .toString()
-      .replace(/^\(?([a-z]+)\)?\s*=>\s*{/, (c, o) => `const ${o}=${e ? 1 : 0};`)
+      .replace(/^\(?([a-z]+)\)?\s*=>\s*{/, (m, o) => `const ${o}=${e ? 1 : 0};`)
       .replace(/}$/, ''),
     h = URL.createObjectURL(new Blob([d], { type: 'text/javascript' }))
   ;(this.worker = new Worker(h)),
@@ -30,21 +30,21 @@ function pe({ debug: e, init: t } = {}, ...i) {
     (this.func = null),
     (this._cb = new Map()),
     (this.run = {}),
-    (this.callFunction = (c, ...o) => {
-      this.worker.postMessage(c), this.worker.postMessage(o)
+    (this.callFunction = (m, ...o) => {
+      this.worker.postMessage(m), this.worker.postMessage(o)
     }),
-    (this.define = (c, o) => {
-      this.callFunction('define', c, o.toString()),
-        (this.run[c] = (...u) =>
+    (this.define = (m, o) => {
+      this.callFunction('define', m, o.toString()),
+        (this.run[m] = (...u) =>
           new Promise((f, a) => {
-            let n = `${c}:${fe()}`
+            let n = `${m}:${fe()}`
             this._cb.set(n, { resolve: f, reject: a }), this.callFunction(n, ...u)
           }))
     }),
-    this.worker.addEventListener('message', (c) => {
-      if (!this.func) this.func = c.data
+    this.worker.addEventListener('message', (m) => {
+      if (!this.func) this.func = m.data
       else {
-        let [o, ...u] = c.data,
+        let [o, ...u] = m.data,
           f = this._cb.get(this.func)
         o ? f.reject(o) : f.resolve(...u),
           this._cb.delete(this.func),
@@ -60,7 +60,7 @@ var ee = pe,
       i = ':',
       d = (u) => u.split(i),
       h = (...u) => u.join(i)
-    function c() {
+    function m() {
       ;(this.func = !1),
         (this.define = (u, f) => {
           let a = new Function('return ' + f)()
@@ -76,7 +76,7 @@ var ee = pe,
           }
         })
     }
-    let o = new c()
+    let o = new m()
     self.addEventListener('message', (u) => {
       if (o.func) {
         let f = o.func,
@@ -119,7 +119,7 @@ function ie(e) {
     i,
     d,
     h,
-    c = e[1].json + '',
+    m = e[1].json + '',
     o,
     u,
     f = e[1]['10'] + '',
@@ -128,7 +128,7 @@ function ie(e) {
     s = e[3]['10'] + '',
     l,
     b,
-    m = e[1]['32'] + '',
+    c = e[1]['32'] + '',
     L,
     U,
     S = e[3]['32'] + '',
@@ -165,7 +165,7 @@ function ie(e) {
         (d = _(e[2])),
         (h = _(`
 JSON string length: `)),
-        (o = _(c)),
+        (o = _(m)),
         (u = _(`
 Zipped decimals string length: `)),
         (a = _(f)),
@@ -173,7 +173,7 @@ Zipped decimals string length: `)),
         (l = _(s)),
         (b = _(` %)
 Zipped 32-bit string length: `)),
-        (L = _(m)),
+        (L = _(c)),
         (U = _(' (')),
         (E = _(S)),
         (X = _(' %)')),
@@ -245,10 +245,10 @@ Zipped 32-bit string length: `)),
     },
     p(p, g) {
       g & 4 && j(d, p[2]),
-        g & 2 && c !== (c = p[1].json + '') && j(o, c),
+        g & 2 && m !== (m = p[1].json + '') && j(o, m),
         g & 2 && f !== (f = p[1]['10'] + '') && j(a, f),
         g & 8 && s !== (s = p[3]['10'] + '') && j(l, s),
-        g & 2 && m !== (m = p[1]['32'] + '') && j(L, m),
+        g & 2 && c !== (c = p[1]['32'] + '') && j(L, c),
         g & 8 && S !== (S = p[3]['32'] + '') && j(E, S),
         g & 1 && A !== (A = p[0].jsonPretty + '') && j(H, A),
         g & 1 && C !== (C = p[0][10] + '') && j(Z, C),
@@ -264,7 +264,7 @@ function ke(e) {
     i,
     d,
     h,
-    c,
+    m,
     o,
     u,
     f,
@@ -278,13 +278,13 @@ function ke(e) {
   `)),
         (d = y('span')),
         (h = _(e[2])),
-        (c = N()),
+        (m = N()),
         n && n.c(),
         (o = N()),
         s && s.c(),
-        (u = me()),
+        (u = ce()),
         v(d, 'contenteditable', ''),
-        e[2] === void 0 && ce(() => e[8].call(d)),
+        e[2] === void 0 && me(() => e[8].call(d)),
         v(t, 'class', 'lz-input')
     },
     m(l, b) {
@@ -293,7 +293,7 @@ function ke(e) {
         r(t, d),
         r(d, h),
         e[2] !== void 0 && (d.innerHTML = e[2]),
-        w(l, c, b),
+        w(l, m, b),
         n && n.m(l, b),
         w(l, o, b),
         s && s.m(l, b),
@@ -316,7 +316,7 @@ function ke(e) {
     o: ne,
     d(l) {
       l && k(t),
-        l && k(c),
+        l && k(m),
         n && n.d(l),
         l && k(o),
         s && s.d(l),
@@ -329,19 +329,19 @@ function ke(e) {
 function we(e, t, i) {
   let d,
     h,
-    c = new ee({
+    m = new ee({
       debug: !0,
       init: () => {
         importScripts('https://unpkg.com/faker@5.5.3/dist/faker.min.js')
-        let { fake: m, datatype: L } = faker
+        let { fake: c, datatype: L } = faker
         function U() {
           return {
             id: L.uuid(),
-            firstName: m('{{name.firstName}}'),
-            lastName: m('{{name.lastName}}'),
-            avatarUrl: m('{{image.avatar}}'),
-            email: m('{{internet.email}}'),
-            phone: m('{{phone.phoneNumberFormat}}'),
+            firstName: c('{{name.firstName}}'),
+            lastName: c('{{name.lastName}}'),
+            avatarUrl: c('{{image.avatar}}'),
+            email: c('{{internet.email}}'),
+            phone: c('{{phone.phoneNumberFormat}}'),
             isPremium: L.boolean(),
             list: Array.from({ length: L.number({ min: 10, max: 15 }) }, S),
           }
@@ -349,22 +349,22 @@ function we(e, t, i) {
         function S() {
           return {
             id: L.uuid(),
-            title: m('{{commerce.productName}}'),
+            title: c('{{commerce.productName}}'),
             amount: L.number({ min: 10, max: 20 }),
-            created: new Date(m('{{date.past}}')).toISOString(),
+            created: new Date(c('{{date.past}}')).toISOString(),
           }
         }
         self.generate = (E) => Array.from({ length: E }, U)
       },
     })
-  c.define('generate', (m) => self.generate(m))
-  function o(m) {
-    !m.altKey && !m.ctrlKey && !m.metaKey && !m.shiftKey && i(7, (a = null)),
-      m.which === 13 && (m.preventDefault(), u())
+  m.define('generate', (c) => self.generate(c))
+  function o(c) {
+    !c.altKey && !c.ctrlKey && !c.metaKey && !c.shiftKey && i(7, (a = null)),
+      c.which === 13 && (c.preventDefault(), u())
   }
   async function u() {
     i(2, (f = parseInt(f))),
-      f > 0 && (i(7, (a = [])), i(7, (a = await c.run.generate(f))))
+      f > 0 && (i(7, (a = [])), i(7, (a = await m.run.generate(f))))
   }
   let f = 0,
     a = null,
@@ -389,7 +389,7 @@ function we(e, t, i) {
         e: i(0, (n.jsonPretty = JSON.stringify(a, null, 2)), n)
       }
       if (e.$$.dirty & 1) {
-        e: i(0, (n['10'] = le.default.pack(n.json).join(he.compress.sep)), n)
+        e: i(0, (n['10'] = le.default.pack(n.json).join(he.sep)), n)
       }
       if (e.$$.dirty & 128) {
         e: i(0, (n['32'] = be(a)), n)

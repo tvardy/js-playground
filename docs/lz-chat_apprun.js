@@ -1,7 +1,7 @@
 import { b as h, c as r } from './chunk-YNYRRD5H.js'
-import { a as v } from './chunk-3XMFSHIP.js'
+import { a as v, b } from './chunk-UFWJWKTZ.js'
 import './chunk-D5WR2F3S.js'
-import { c as x, d as L, e as b } from './chunk-3PD2PFOE.js'
+import { c as x, d as L } from './chunk-AJ7XJ6D3.js'
 import { a as m, g as a } from './chunk-SLFZ277Q.js'
 var g = r`
   <form class="box wide login" onSubmit=${(e) => app.run('login', e)}>
