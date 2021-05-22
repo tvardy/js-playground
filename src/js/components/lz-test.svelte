@@ -1,42 +1,8 @@
 <script>
-  import SideWorker from '@78nine/sideworker'
   import lzw from 'lzwcompress'
+
   import { pack, compress } from '../utils/lzip.js'
-
-  const generator = new SideWorker({
-    debug: true,
-    init: () => {
-      importScripts('https://unpkg.com/faker@5.5.3/dist/faker.min.js')
-
-      const { fake, datatype } = faker
-
-      function Record() {
-        return {
-          id: datatype.uuid(),
-          firstName: fake('{{name.firstName}}'),
-          lastName: fake('{{name.lastName}}'),
-          avatarUrl: fake('{{image.avatar}}'),
-          email: fake('{{internet.email}}'),
-          phone: fake('{{phone.phoneNumberFormat}}'),
-          isPremium: datatype.boolean(),
-          list: Array.from({ length: datatype.number({ min: 10, max: 15 }) }, ChildRecord)
-        }
-      }
-
-      function ChildRecord() {
-        return {
-          id: datatype.uuid(),
-          title: fake('{{commerce.productName}}'),
-          amount: datatype.number({ min: 10, max: 20 }),
-          created: new Date(fake('{{date.past}}')).toISOString()
-        }
-      }
-
-      self.generate = (length) => Array.from({ length }, Record)
-    }
-  })
-
-  generator.define('generate', (num) => self.generate(num))
+  import worker from '../tools/FakeJSONDataWorker.js'
 
   function handleKeyDown(e) {
     if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
@@ -55,7 +21,7 @@
     if (numberOfRecords > 0) {
       data = []
 
-      data = await generator.run.generate(numberOfRecords)
+      data = await worker.run.generate(numberOfRecords)
     }
   }
 
