@@ -2,7 +2,9 @@
 
 https://tvardy.github.io/js-playground
 
+
 # What is being done here?
+
 
 ## Lightweight state management
 
@@ -17,6 +19,7 @@ As both applications are connected to the same store, the changes made on one si
 
 Another possible step here would be using the components as **micro-frontends** (e.g. take header from Svelte version, tasks list written with uce-template, and the footer written with another technology)
 
+
 ## AppRun + Pocket.io
 
 [AppRun](https://github.com/yysun/apprun) "is a JavaScript library for building reliable, high-performance web applications using the Elm-inspired architecture, events, and components."
@@ -29,6 +32,7 @@ The demo page consists of three elements:
 3. a [Client](https://tvardy.github.io/js-playground/pages/apprun_ws_client.html) page connected to the same Message Broker and just reading the data and showing it with additional information if the new number is higher or lower than the previous one.
 
 It's a good example of showing stock or bookmaker price changes in real-time with lightweight JS tools.
+
 
 ## LZ Chat
 
@@ -46,6 +50,16 @@ A simple chat application using the same Message Broker and pocket.io client lib
 
 The messages in the chat are not being sent in plain text. Instead we're using [lzwCompress](https://www.npmjs.com/package/lzwcompress) and a small additional data "mangling" operation (more on that in the next chapter)
 
+
+## In-memory LZ compression efficiency test
+
+After checking the [lzwCompress](https://www.npmjs.com/package/lzwcompress) package in the **LZ Chat** above, I found out that the messages I used were so short that their LZIP-ed version was actually bigger than the original.
+
+So I decided to check at what level of data length can I acctually benefit of the data compression (e.g. to store more data offline in LocalStorage).
+
+I'm using [faker](https://www.npmjs.com/package/faker) to create some realistic JSON data bundle and then trying to pack it and compare the results. I found out that using a [little trick](/src/js/utils/lzip.js) of converting an array of decimal numbers (produced by lzwCompress) into their 32-bit equivalents we can get even higher compression.
+
+This test (and quite havy fake-data creation) pushed me also into creating the [SideWorker](https://github.com/78nine/SideWorker) package. You're encouraged to read more in its README ;)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjkyODgwMzk5XX0=
+eyJoaXN0b3J5IjpbNjcyMTk3Mzc5XX0=
 -->
