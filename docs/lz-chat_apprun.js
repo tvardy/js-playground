@@ -1,21 +1,21 @@
-import{b as u,c as s}from"./chunk-A6OLRRAH.js";import{a as c,b as p}from"./chunk-IPCKBDIG.js";import"./chunk-MOOY4HSH.js";import{c as i,d as g}from"./chunk-JDYNLKZY.js";import{a,b as l,h as m}from"./chunk-Z3EDBJV3.js";var x=s`
+import{b as l,c as n}from"./chunk-A6OLRRAH.js";import{a as p,b as c}from"./chunk-R2UZSCZ6.js";import"./chunk-MOOY4HSH.js";import{a as i}from"./chunk-M5O3SXJ6.js";import{c as g,d}from"./chunk-JDYNLKZY.js";import{a,b as u,h as m}from"./chunk-Z3EDBJV3.js";var x=n`
   <form class="box wide login" onSubmit=${e=>app.run("login",e)}>
     <input name="user" placeholder="Your nickname" />
   </form>
-`,d=x;var L=(e,o)=>s`
+`,f=x;var w=(e,t)=>n`
   <div
     class="message"
-    data-self=${o.user.id===e}
-    data-user=${o.user.name}
+    data-self=${t.user.id===e}
+    data-user=${t.user.name}
   >
-    ${o.msg}
+    ${t.msg}
   </div>
-`,f=L;var E=(e,o)=>s`
-  <section class="box wide chat-box">
-    ${o.map(t=>f(e.id,t))}
+`,h=w;var E=(e,t,r)=>n`
+  <section class="box wide chat-box" data-status=${e}>
+    ${r.map(o=>h(t.id,o))}
   </section>
-  <form class="box wide message" onSubmit=${t=>app.run("send",t)}>
+  <form class="box wide message" onSubmit=${o=>app.run("send",o)}>
     <input name="msg" placeholder="message box..." />
   </form>
-`,h=E;m.debug("LZ Chat AppRun started!");app.render=u;var v=document.getElementById("apprun"),w={login(e,o){o.preventDefault();let t=o.target.elements.user.value;try{p().then(r=>{n.sock=r,n.sock.on("message",b=>{n.run("message",g(b))}),n.run("connected",{id:r.id,name:t})})}catch(r){return m.error("WS error:",r),l(a({},e),{status:"error"})}},connected(e,o){return m.debug("AppRun connected:",o),l(a({},e),{user:o})},send(e,o){o.preventDefault();let t=o.target.elements.msg.value,r={user:e.user,msg:t};o.target.elements.msg.value="",m.debug("AppRun send:",t),n.sock.emit("message",i(r)),n.run("message",r)},message(e,o){return m.debug("AppRun message:",o.user,o.msg),n.run("align"),l(a({},e),{messages:e.messages.concat(o)})},align(){let e=v.querySelector(".chat-box");setTimeout(()=>{e.scrollTop<e.scrollHeight&&(e.scrollTop=e.scrollHeight)},0)}},$=e=>s`${e.user.id?h(e.user,e.messages):d}`,n=app.start(v,c,$,w);
+`,v=E;m.debug("LZ Chat AppRun started!");app.render=l;var b=document.getElementById("apprun"),$={login(e,t){t.preventDefault();let r=t.target.elements.user.value;s.run("connecting"),i(p.URL).then(o=>{s.sock=o,s.sock.on("message",L=>{s.run("message",d(L))}),s.run("connected",{id:o.id,name:r})}).catch(o=>{m.error("WS error:",o),s.run("error")})},connecting(e){return u(a({},e),{status:"connecting"})},connected(e,t){return m.debug("AppRun connected:",t),u(a({},e),{status:"connected",user:t})},error(){return u(a({},c),{status:"error"})},send(e,t){t.preventDefault();let r=t.target.elements.msg.value,o={user:e.user,msg:r};t.target.elements.msg.value="",m.debug("AppRun send:",r),s.sock.emit("message",g(o)),s.run("message",o)},message(e,t){return m.debug("AppRun message:",t.user,t.msg),s.run("align"),u(a({},e),{messages:e.messages.concat(t)})},align(){let e=b.querySelector(".chat-box");setTimeout(()=>{e.scrollTop<e.scrollHeight&&(e.scrollTop=e.scrollHeight)},0)}},S=e=>n`${e.status==="login"?f:v(e.status,e.user,e.messages)}`,s=app.start(b,c,S,$);
 //# sourceMappingURL=lz-chat_apprun.js.map
