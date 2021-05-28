@@ -3,7 +3,7 @@ const a=void 0,e="",s={task:"",update:t=>{s.task=t.target.value},submit:()=>{}}
 function u({add:t}){s.submit=a=>{a.preventDefault(),t(s.task),s.task="",a.target.elements.task.value=s.task}}t(a,u)
 export default s
 </script>
-<style scoped>input{width:100%;padding:.5em;border:1px solid #999;background-color:transparent}</style>
+<style scoped>input{width:100%;padding:.5em;border:1px solid #999;color:#ccc;background-color:transparent}</style>
 <todos-input>
 <form onsubmit={{submit}}>
 <input name=task placeholder="Add new task..." value={{task}} oninput={{update}}>

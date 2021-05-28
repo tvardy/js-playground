@@ -1,5 +1,5 @@
 .lz-chat input {
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .lz-chat form.login {
@@ -17,16 +17,16 @@
 
 .lz-chat .chat-box {
   height: 20em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   display: flex;
   flex-direction: column;
   overflow: auto;
 }
 
 .lz-chat .chat-box .message {
-  padding: 1.5em .5em .5em;
+  padding: 1.5em 0.5em 0.5em;
   background: var(--shade1);
-  border-radius: .5em;
+  border-radius: 0.5em;
   align-self: flex-start;
   position: relative;
 }
@@ -41,11 +41,11 @@
   content: attr(data-user);
   font-weight: bold;
   position: absolute;
-  top: .5em;
-  font-size: .66em;
+  top: 0.5em;
+  font-size: 0.66em;
   text-transform: uppercase;
 }
 
 .lz-chat .chat-box .message + .message {
-  margin-top: .5em;
+  margin-top: 0.5em;
 }

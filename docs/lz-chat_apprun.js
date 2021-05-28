@@ -1,78 +1,21 @@
-import { b as h, c as r } from './chunk-YNYRRD5H.js'
-import { a as v, b } from './chunk-UFWJWKTZ.js'
-import './chunk-D5WR2F3S.js'
-import { c as x, d as L } from './chunk-AJ7XJ6D3.js'
-import { a as m, g as a } from './chunk-SLFZ277Q.js'
-var g = r`
-  <form class="box wide login" onSubmit=${(e) => app.run('login', e)}>
+import{b as u,c as s}from"./chunk-A6OLRRAH.js";import{a as c,b as p}from"./chunk-IPCKBDIG.js";import"./chunk-MOOY4HSH.js";import{c as i,d as g}from"./chunk-JDYNLKZY.js";import{a,b as l,h as m}from"./chunk-Z3EDBJV3.js";var x=s`
+  <form class="box wide login" onSubmit=${e=>app.run("login",e)}>
     <input name="user" placeholder="Your nickname" />
   </form>
-`,
-  l = g
-var d = (e, o) => r`
+`,d=x;var L=(e,o)=>s`
   <div
     class="message"
-    data-self=${o.user.id === e}
+    data-self=${o.user.id===e}
     data-user=${o.user.name}
   >
     ${o.msg}
   </div>
-`,
-  u = d
-var f = (e, o) => r`
+`,f=L;var E=(e,o)=>s`
   <section class="box wide chat-box">
-    ${o.map((t) => u(e.id, t))}
+    ${o.map(t=>f(e.id,t))}
   </section>
-  <form class="box wide message" onSubmit=${(t) => app.run('send', t)}>
+  <form class="box wide message" onSubmit=${t=>app.run("send",t)}>
     <input name="msg" placeholder="message box..." />
   </form>
-`,
-  c = f
-a.debug('LZ Chat AppRun started!')
-app.render = h
-var p = document.getElementById('apprun'),
-  E = {
-    login(e, o) {
-      o.preventDefault()
-      let t = o.target.elements.user.value
-      try {
-        b().then((s) => {
-          ;(n.sock = s),
-            n.sock.on('message', (i) => {
-              n.run('message', L(i))
-            }),
-            n.run('connected', { id: s.id, name: t })
-        })
-      } catch (s) {
-        return a.error('WS error:', s), m(m({}, e), { status: 'error' })
-      }
-    },
-    connected(e, o) {
-      return a.debug('AppRun connected:', o), m(m({}, e), { user: o })
-    },
-    send(e, o) {
-      o.preventDefault()
-      let t = o.target.elements.msg.value,
-        s = { user: e.user, msg: t }
-      ;(o.target.elements.msg.value = ''),
-        a.debug('AppRun send:', t),
-        n.sock.emit('message', x(s)),
-        n.run('message', s)
-    },
-    message(e, o) {
-      return (
-        a.debug('AppRun message:', o.user, o.msg),
-        n.run('align'),
-        m(m({}, e), { messages: e.messages.concat(o) })
-      )
-    },
-    align() {
-      let e = p.querySelector('.chat-box')
-      setTimeout(() => {
-        e.scrollTop < e.scrollHeight && (e.scrollTop = e.scrollHeight)
-      }, 0)
-    },
-  },
-  w = (e) => r`${e.user.id ? c(e.user, e.messages) : l}`,
-  n = app.start(p, v, w, E)
+`,h=E;m.debug("LZ Chat AppRun started!");app.render=u;var v=document.getElementById("apprun"),w={login(e,o){o.preventDefault();let t=o.target.elements.user.value;try{p().then(r=>{n.sock=r,n.sock.on("message",b=>{n.run("message",g(b))}),n.run("connected",{id:r.id,name:t})})}catch(r){return m.error("WS error:",r),l(a({},e),{status:"error"})}},connected(e,o){return m.debug("AppRun connected:",o),l(a({},e),{user:o})},send(e,o){o.preventDefault();let t=o.target.elements.msg.value,r={user:e.user,msg:t};o.target.elements.msg.value="",m.debug("AppRun send:",t),n.sock.emit("message",i(r)),n.run("message",r)},message(e,o){return m.debug("AppRun message:",o.user,o.msg),n.run("align"),l(a({},e),{messages:e.messages.concat(o)})},align(){let e=v.querySelector(".chat-box");setTimeout(()=>{e.scrollTop<e.scrollHeight&&(e.scrollTop=e.scrollHeight)},0)}},$=e=>s`${e.user.id?h(e.user,e.messages):d}`,n=app.start(v,c,$,w);
 //# sourceMappingURL=lz-chat_apprun.js.map
