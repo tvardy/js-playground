@@ -26,6 +26,7 @@
     width: 100%;
     padding: 0.5em;
     border: 1px solid #999;
+    color: #ccc;
     background-color: transparent;
   }
 </style>
