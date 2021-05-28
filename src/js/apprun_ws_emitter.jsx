@@ -1,6 +1,7 @@
 /* global app, io */
 import { LEVELS, Log } from './tools/Logger.js'
 import { randomRange } from './utils/random.js'
+import { wsConnect } from './utils/wsConnect.js'
 
 import { constants } from './apprun_ws_common.js'
 
@@ -22,7 +23,7 @@ const view = ({ status, sending }) => (
 const update = {
   async init (state) {
     try {
-      App.ws = io(constants.URL)
+      App.ws = await wsConnect(constants.URL)
 
       Log.debug('WS connected')
 

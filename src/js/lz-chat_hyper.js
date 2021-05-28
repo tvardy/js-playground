@@ -1,8 +1,8 @@
 import { LEVELS, Log } from './tools/Logger'
 import { comp, html, render } from 'hypersimple'
 
-import state from './lz-chat_state'
-import { wsConnect } from './lz-chat_common'
+import { constants, state } from './lz-chat_common'
+import { wsConnect } from './utils/wsConnect'
 import { pack, unpack } from './utils/lzip.js'
 
 import Login from './components/lz-h_login'
@@ -22,8 +22,10 @@ const actions = {
 
     const name = e.target.elements.user.value
 
-    try {
-      wsConnect().then((sock) => {
+    model.status = 'connecting'
+
+    wsConnect(constants.URL)
+      .then((sock) => {
         this.sock = sock
 
         this.sock.on('message', (msg) => {
@@ -32,15 +34,16 @@ const actions = {
 
         this.connected({ id: sock.id, name })
       })
-    } catch (e) {
-      Log.error('WS error:', e)
+      .catch((e) => {
+        Log.error('WS error:', e)
 
-      model.status = 'error'
-    }
+        model.status = 'error'
+      })
   },
   connected (user) {
     Log.debug('HyperSimple connected:', user)
 
+    model.status = 'connected'
     model.user = user
   },
   send (e) {
@@ -76,6 +79,6 @@ const actions = {
 
 const model = { ...state, ...actions }
 
-const view = comp((props) => html`${!props.user.id ? Login(props) : Chat(props)}`)
+const view = comp((props) => html`${props.status === 'login' ? Login(props) : Chat(props)}`)
 
 render(rootElem, () => view(model))

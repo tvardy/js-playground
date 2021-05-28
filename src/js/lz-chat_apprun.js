@@ -2,8 +2,8 @@
 import { LEVELS, Log } from './tools/Logger'
 import { render, html } from 'uhtml'
 
-import state from './lz-chat_state'
-import { wsConnect } from './lz-chat_common'
+import { constants, state } from './lz-chat_common'
+import { wsConnect } from './utils/wsConnect'
 import { pack, unpack } from './utils/lzip.js'
 
 import Login from './components/lz-u_login'
@@ -24,8 +24,10 @@ const actions = {
 
     const name = e.target.elements.user.value
 
-    try {
-      wsConnect().then((sock) => {
+    App.run('connecting')
+
+    wsConnect(constants.URL)
+      .then((sock) => {
         App.sock = sock
 
         App.sock.on('message', (msg) => {
@@ -34,13 +36,16 @@ const actions = {
 
         App.run('connected', { id: sock.id, name })
       })
-    } catch (e) {
-      Log.error('WS error:', e)
+      .catch((e) => {
+        Log.error('WS error:', e)
 
-      return {
-        ...state,
-        status: 'error'
-      }
+        App.run('error')
+      })
+  },
+  connecting (state) {
+    return {
+      ...state,
+      status: 'connecting'
     }
   },
   connected (state, user) {
@@ -48,7 +53,14 @@ const actions = {
 
     return {
       ...state,
+      status: 'connected',
       user
+    }
+  },
+  error() {
+    return {
+      ...state,
+      status: 'error'
     }
   },
   send (state, e) {
@@ -86,6 +98,6 @@ const actions = {
 }
 
 const view = (state) =>
-  html`${!state.user.id ? Login : Chat(state.user, state.messages)}`
+  html`${state.status === 'login' ? Login : Chat(state.status, state.user, state.messages)}`
 
 const App = app.start(rootElem, state, view, actions)

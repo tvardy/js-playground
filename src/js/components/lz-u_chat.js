@@ -3,8 +3,8 @@ import { html } from 'uhtml'
 
 import Message from './lz-u_message'
 
-const view = (user, messages) => html`
-  <section class="box wide chat-box">
+const view = (status, user, messages) => html`
+  <section class="box wide chat-box" data-status=${status}>
     ${messages.map((message) => Message(user.id, message))}
   </section>
   <form class="box wide message" onSubmit=${(e) => app.run('send', e)}>
