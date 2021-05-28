@@ -73,6 +73,7 @@
     "babel-eslint": "10.1.0",
     "browser-sync": "2.26.14",
     "browserslist": "4.16.4",
+    "cz-conventional-changelog": "3.3.0",
     "esbuild": "0.11.12",
     "esbuild-svelte": "0.4.3",
     "eslint": "7.24.0",
@@ -91,6 +92,11 @@
     "pinst": "2.1.6",
     "prettier": "2.2.1",
     "prettier-plugin-svelte": "2.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "engines": {
     "node": "12.x"
