@@ -14,7 +14,7 @@ const store = Machine.create(
     ...initialState
   },
 
-  // transitions
+  // transitions / actions
   {
     [defaultState]: {
       toggle ({ state }, id) {
