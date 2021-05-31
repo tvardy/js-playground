@@ -7,11 +7,8 @@ const env = process.argv[2] || 'dev'
 
 const options = {
   _: {
-    entryPoints: pack.esbuild.entries,
     bundle: true,
     sourcemap: true,
-    format: 'esm',
-    splitting: true,
     plugins: [sveltePlugin()],
     target: list,
     jsxFactory: 'app.h',
@@ -31,4 +28,29 @@ const options = {
   },
 }
 
-esbuild.build(Object.assign({}, options._, options[env])).catch(() => process.exit(1))
+esbuild
+  .build(
+    Object.assign(
+      {
+        entryPoints: pack.esbuild.modules,
+        format: 'esm',
+        splitting: true,
+      },
+      options._,
+      options[env]
+    )
+  )
+  .catch(() => process.exit(1))
+
+esbuild
+  .build(
+    Object.assign(
+      {
+        entryPoints: pack.esbuild.bundles,
+        format: 'iife',
+      },
+      options._,
+      options[env]
+    )
+  )
+  .catch(() => process.exit(1))

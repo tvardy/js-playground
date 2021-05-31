@@ -27,7 +27,7 @@
     "postpublish": "pinst --enable"
   },
   "esbuild": {
-    "entries": [
+    "modules": [
       "src/js/state-stent.js",
       "src/js/state-preach.js",
       "src/js/state-stores.js",
@@ -36,6 +36,10 @@
       "src/js/lz-chat_apprun.js",
       "src/js/lz-chat_hyper.js",
       "src/js/lz-test.js"
+    ],
+    "bundles": [
+      "src/js/wc-script_uce.js",
+      "src/js/wc-script_hybrids.js"
     ],
     "outdir": "dist"
   },
@@ -59,12 +63,14 @@
   "dependencies": {
     "@78nine/sideworker": "1.0.1",
     "apprun": "3.28.3",
+    "hybrids": "5.3.2",
     "hypersimple": "0.4.1",
     "lzwcompress": "1.0.0",
     "nanoid": "3.1.23",
     "pocket.io": "0.1.5",
     "preach": "0.3.0",
     "stent": "8.0.4",
+    "uce": "1.16.2",
     "uce-loader": "2.0.0",
     "uce-template": "0.6.0",
     "uhtml": "2.7.3"
