@@ -1,6 +1,5 @@
-<script type=module></script>
-export default {}
-
+<script type=module>export default{}
+</script>
 <app-preach>
 <todos-input></todos-input>
 <todos-list></todos-list>

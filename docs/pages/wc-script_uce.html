@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Playground</title>
+
+    <link rel="stylesheet" href="../common.css" />
+
+    <script src="../wc-script_uce.js" defer data-target="#here">
+      <simple-component-uce title="I am a µce-based custom element">
+        <p>And I am the component's <em>child</em></p>
+        <p>And me too...</p>
+      </simple-component-uce>
+    </script>
+  </head>
+  <body>
+    <aside><a href="../index.html">← go back</a></aside>
+
+    <section class="lz-test">
+      <header>
+        <h2>Web Components within script tag</h2>
+        <p>
+          Using
+          <a href="https://www.npmjs.com/package/uce" target="_blank"
+            >µce</a
+          >
+        </p>
+      </header>
+      <div class="box wide" id="here">
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h2>File size summary:</h2>
+      </header>
+      <div class="box wide">
+        <strong>Bundled file:</strong> 11kB
+      </div>
+    </section>
+  </body>
+</html>
