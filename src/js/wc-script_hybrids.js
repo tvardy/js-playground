@@ -2,7 +2,6 @@ import { html, define } from 'hybrids'
 import { start } from './wc-script_common'
 
 function handleClick(host) {
-  console.log('!', host)
   host.count += 1
   host.active = !host.active
 }
@@ -21,7 +20,7 @@ define('simple-component-hybrids', {
     div {
       display: block;
       padding: 2em;
-      background: lightpink;
+      background: lightcyan;
       color: var(--shade2);
       text-align: center;
       cursor: pointer;
