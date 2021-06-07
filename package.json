@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "bs:reload": "browser-sync reload",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run clean && npm run build:riot",
     "build": "node .esbuild.cjs",
     "build:riot": "riot src/js/wc-script_riot.js -o src/js/wc-script_riot_wrapper.js",
     "build:prod": "npm run build -- prod",
@@ -20,7 +20,7 @@
     "format": "prettier --write \"./**/*.{js,cjs,html,css,scss,json,svelte}\"",
     "lint": "eslint --fix src/",
     "start": "npm-run-all build -p start:*",
-    "start:build": "onchange 'src/**/*' -d 300 -e 'src/js/wc-script_riot_wrapper.js' -- npm-run-all build:riot build bs:reload",
+    "start:build": "onchange 'src/**/*' -d 300 -e 'src/js/wc-script_riot_wrapper.js' -- npm-run-all build bs:reload",
     "start:bs": "browser-sync start --server dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "husky install",

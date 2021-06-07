@@ -107,4 +107,4 @@ dist
 .idea
 
 
-wc-script_riot_wrapper.js
+src/js/wc-script_riot_wrapper.js
