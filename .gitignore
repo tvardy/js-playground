@@ -105,3 +105,6 @@ dist
 
 .DS_Store
 .idea
+
+
+wc-script_riot_wrapper.js

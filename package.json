@@ -8,6 +8,7 @@
     "bs:reload": "browser-sync reload",
     "prebuild": "npm run clean",
     "build": "node .esbuild.cjs",
+    "build:riot": "riot src/js/wc-script_riot.js -o src/js/wc-script_riot_wrapper.js",
     "build:prod": "npm run build -- prod",
     "build:ghpages": "rm -rf ./docs && npm run build:prod && mv ./dist ./docs && rm -rf ./docs/*.map",
     "postbuild": "npm-run-all -p copy:* rename:*",
@@ -19,7 +20,7 @@
     "format": "prettier --write \"./**/*.{js,cjs,html,css,scss,json,svelte}\"",
     "lint": "eslint --fix src/",
     "start": "npm-run-all build -p start:*",
-    "start:build": "onchange -d 300 \"src/**/*\" -- npm-run-all build bs:reload",
+    "start:build": "onchange 'src/**/*' -d 300 -e 'src/js/wc-script_riot_wrapper.js' -- npm-run-all build:riot build bs:reload",
     "start:bs": "browser-sync start --server dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "husky install",
@@ -39,7 +40,8 @@
     ],
     "bundles": [
       "src/js/wc-script_uce.js",
-      "src/js/wc-script_hybrids.js"
+      "src/js/wc-script_hybrids.js",
+      "src/js/wc-script_riot_wrapper.js"
     ],
     "outdir": "dist"
   },
@@ -69,6 +71,7 @@
     "nanoid": "3.1.23",
     "pocket.io": "0.1.5",
     "preach": "0.3.0",
+    "riot": "5.4.4",
     "stent": "8.0.4",
     "uce": "1.16.2",
     "uce-loader": "2.0.0",
@@ -76,6 +79,7 @@
     "uhtml": "2.7.3"
   },
   "devDependencies": {
+    "@riotjs/cli": "5.3.0",
     "babel-eslint": "10.1.0",
     "browser-sync": "2.26.14",
     "browserslist": "4.16.6",

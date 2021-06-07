@@ -1,0 +1,58 @@
+<simple-component-riot class={ state.active ? 'active' : null } onclick={ handleClick }>
+  <h3>{ props.title }</h3>
+  <pre>Clicked: { state.count } times</pre>
+  <div class="children"></div>
+
+  <style>
+  :host {
+    display: block;
+    padding: 2em;
+    background: lightgreen;
+    color: var(--shade2);
+    text-align: center;
+    cursor: pointer;
+  }
+
+  :host.active {
+    background: var(--shade1);
+    color: var(--shade0);
+  }
+
+  :host.active > * {
+    color: inherit;
+  }
+
+  h1 {
+    color: var(--shade1);
+  }
+  
+  p {
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+  </style>
+
+  <script>
+    export default {
+      onBeforeMount() {
+        // initial state
+        this.state = {
+          count: 0,
+          active: false
+        }
+      },
+      onMounted() {
+        // the only option to move the children where we want
+        this.$('.children').appendChild(this.root.children[0])
+      },
+      handleClick() {
+        const { count, active } = this.state
+
+        this.update({
+          count: count + 1,
+          active: !active
+        })
+      }
+    }
+  </script>
+</simple-component-riot>
