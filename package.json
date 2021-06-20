@@ -23,8 +23,11 @@
     "start:build": "onchange 'src/**/*' -d 300 -e 'src/js/wc-script_riot_wrapper.js' -- npm-run-all build bs:reload",
     "start:bs": "browser-sync start --server dist",
     "pretest": "npm run build",
-    "test": "docker run -v $(pwd):/share:ro -w /share -it --user=root testcafe/testcafe firefox,chromium ./src/**/*.test.js --app \"npm run start:bs\"",
-    "test:watch": "npm t -- -L",
+    "test": "#",
+    "test:local": "npm t && testcafe --config-file .testcaferc.json",
+    "test:local:watch": "npm run test:local -- -L",
+    "test:docker": "npm t && docker run -v $(pwd):/share:ro -w /share -it --user=root testcafe/testcafe --config-file .testcaferc.json",
+    "test:docker:watch": "npm run test:docker -- -L",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
