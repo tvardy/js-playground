@@ -22,7 +22,9 @@
     "start": "npm-run-all build -p start:*",
     "start:build": "onchange 'src/**/*' -d 300 -e 'src/js/wc-script_riot_wrapper.js' -- npm-run-all build bs:reload",
     "start:bs": "browser-sync start --server dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npm run build",
+    "test": "docker run -v $(pwd):/share:ro -w /share -it --user=root testcafe/testcafe firefox,chromium ./src/**/*.test.js --app \"npm run start:bs\"",
+    "test:watch": "npm t -- -L",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
@@ -94,6 +96,7 @@
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-standard": "5.0.0",
     "eslint-plugin-svelte3": "3.2.0",
+    "eslint-plugin-testcafe": "0.2.1",
     "husky": "6.0.0",
     "lint-staged": "11.0.0",
     "live-server": "1.2.1",
@@ -101,7 +104,8 @@
     "onchange": "7.1.0",
     "pinst": "2.1.6",
     "prettier": "2.3.1",
-    "prettier-plugin-svelte": "2.3.0"
+    "prettier-plugin-svelte": "2.3.0",
+    "testcafe": "1.14.2"
   },
   "config": {
     "commitizen": {
