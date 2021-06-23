@@ -1,5 +1,5 @@
 {
-  "browsers": ["chromium:headless", "firefox:headless"],
-  "src": "./src/**/*.test.js",
-  "appCommand": "npm run start:bs"
+  "browsers": ["chromium"],
+  "src": "./src/**/*.testcafe.js",
+  "appCommand": "npm run test:serve"
 }
