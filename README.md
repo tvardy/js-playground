@@ -98,3 +98,10 @@ We will be serving such components for other departments in our work and we real
 ```
 
 And... it actually turned out to be pretty easy to achieve using `document.currentScript` element plus... a little [wrapper](/src/js/wc-script_common.js) ;)
+
+
+## Planned
+
+- [ ] Comparing functional testing tools: [Testcafe](https://www.testcafe.io/) vs. [Cypress](https://www.cypress.io/) (in progress)
+- [ ] [Mikado](https://github.com/nextapps-de/mikado/#readme) - "Modern template engine based on living standards. Super-lightweight, outstanding performance, no dependencies"
+- [ ] Finally writing a blog post "What I learned by migrating my blog from Jekyll to Sapper" :D
