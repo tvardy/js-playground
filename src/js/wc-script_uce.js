@@ -2,7 +2,7 @@ import { define, css } from 'uce'
 import { start } from './wc-script_common'
 
 define('simple-component-uce', {
-  style: selector => css`
+  style: (selector) => css`
     ${selector} {
       display: block;
       padding: 2em;
@@ -26,7 +26,7 @@ define('simple-component-uce', {
       text-transform: uppercase;
     }
   `,
-  render() {
+  render () {
     this.html`
       <h1>${this.props.title}</h1>
       <pre>Clicked: ${this.count} times</pre>
@@ -34,11 +34,11 @@ define('simple-component-uce', {
     `
   },
   count: 0,
-  onClick(event) {
+  onClick (event) {
     this.classList.toggle('active')
     this.count++
     this.render()
-  },
+  }
 })
 
 start(document.currentScript)

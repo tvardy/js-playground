@@ -57,7 +57,7 @@ const actions = {
       user
     }
   },
-  error() {
+  error () {
     return {
       ...state,
       status: 'error'
@@ -98,6 +98,8 @@ const actions = {
 }
 
 const view = (state) =>
-  html`${state.status === 'login' ? Login : Chat(state.status, state.user, state.messages)}`
+  html`${state.status === 'login'
+    ? Login
+    : Chat(state.status, state.user, state.messages)}`
 
 const App = app.start(rootElem, state, view, actions)

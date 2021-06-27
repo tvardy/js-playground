@@ -1,7 +1,7 @@
 import { html, define } from 'hybrids'
 import { start } from './wc-script_common'
 
-function handleClick(host) {
+function handleClick (host) {
   host.count += 1
   host.active = !host.active
 }
@@ -11,7 +11,7 @@ define('simple-component-hybrids', {
   active: false,
   children: (host) => Array.from(host.childNodes),
   render: ({ active, title, count, children }) => html`
-    <div class="${ { active } }" onclick="${handleClick}">
+    <div class="${{ active }}" onclick="${handleClick}">
       <h1>${title}</h1>
       <pre>Clicked: ${count} times</pre>
       ${children}

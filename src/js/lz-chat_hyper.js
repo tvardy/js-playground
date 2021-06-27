@@ -79,6 +79,8 @@ const actions = {
 
 const model = { ...state, ...actions }
 
-const view = comp((props) => html`${props.status === 'login' ? Login(props) : Chat(props)}`)
+const view = comp(
+  (props) => html`${props.status === 'login' ? Login(props) : Chat(props)}`
+)
 
 render(rootElem, () => view(model))
