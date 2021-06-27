@@ -26,7 +26,7 @@
     "test": "#",
     "test:serve": "static-server dist",
     "test:cypress": "npm t && docker run cypress/browsers:node14.16.0-chrome90-ff88",
-    "test:cypress:watch": "#",
+    "test:cypress:watch": "cypress open",
     "test:testcafe": "npm t && docker run -v $(pwd):/share:ro -w /share -it --user=root testcafe/testcafe --config-file .testcaferc.json",
     "test:testcafe:watch": "npm run test:docker -- -L",
     "postinstall": "husky install",
