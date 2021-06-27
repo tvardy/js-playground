@@ -5,6 +5,8 @@ https://tvardy.github.io/js-playground
 
 # What is being done here?
 
+---
+
 
 ## Lightweight state management
 
@@ -23,6 +25,8 @@ As both applications are connected to the same store, the changes made on one si
 Another possible step here would be using the components as **micro-frontends** (e.g. take the header from Svelte version,
 tasks list written with uce-template, and the footer written with another technology)
 
+---
+
 
 ## AppRun + `Pocket.io`
 
@@ -40,6 +44,8 @@ The demo page consists of three elements:
    and just reading the data and showing it with additional information if the new number is higher or lower than the previous one.
 
 It's a good example of showing stock or bookmaker price changes in real-time with lightweight JS tools.
+
+---
 
 
 ## LZ Chat
@@ -62,6 +68,14 @@ A simple chat application using the same **Message Broker** and `pocket.io` for 
 The messages in the chat are not being sent in plain text. Instead, we're using [lzwCompress](https://www.npmjs.com/package/lzwcompress)
 and a small additional data "mangling" operation (more on that in the next chapter)
 
+### Lastly
+
+I picked this view to make some small comparison of functional testing tools: [Testcafe](https://www.testcafe.io/) vs. [Cypress](https://www.cypress.io/).
+I need to admit that even though I found Testcafe's documentation and syntax much clearer and lean, the Cypress beats it with functionality,
+ability to nest the tests and the mocha/chai familiar syntax.
+
+---
+
 
 ## In-memory LZ compression efficiency test
 
@@ -77,6 +91,8 @@ and compare the results. I found out that using a [little trick](/src/js/utils/l
 
 This test (and quite heavy fake-data creation) pushed me also into creating the [SideWorker](https://github.com/78nine/SideWorker) package.
 You're encouraged to read more in its README ;)
+
+---
 
 
 ## Web Components within script tag
@@ -99,9 +115,10 @@ We will be serving such components for other departments in our work and we real
 
 And... it actually turned out to be pretty easy to achieve using `document.currentScript` element plus... a little [wrapper](/src/js/wc-script_common.js) ;)
 
+---
+
 
 ## Planned
 
-- [ ] Comparing functional testing tools: [Testcafe](https://www.testcafe.io/) vs. [Cypress](https://www.cypress.io/) (in progress)
 - [ ] [Mikado](https://github.com/nextapps-de/mikado/#readme) - "Modern template engine based on living standards. Super-lightweight, outstanding performance, no dependencies"
 - [ ] Finally writing a blog post "What I learned by migrating my blog from Jekyll to Sapper" :D
