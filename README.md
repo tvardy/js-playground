@@ -117,8 +117,17 @@ And... it actually turned out to be pretty easy to achieve using `document.curre
 
 ---
 
+## Preach State Management + Mikado
+
+Even though [Mikado](https://github.com/nextapps-de/mikado/#readme) API and documentation aren't that nice as of some newer tools,
+the library keeps very good positions in [JS Framework Benchmark](https://krausest.github.io/js-framework-benchmark/2021/table_chrome_90.0.4430.72.html) Test.
+I've written a simple application displaying up to 10 randomly generated numbers (in random delay).
+I will try to compare its results with [µhtml](https://www.npmjs.com/package/uhtml)
+
+_[to be continued]_
+
+---
 
 ## Planned
 
-- [ ] [Mikado](https://github.com/nextapps-de/mikado/#readme) - "Modern template engine based on living standards. Super-lightweight, outstanding performance, no dependencies"
 - [ ] Finally writing a blog post "What I learned by migrating my blog from Jekyll to Sapper" :D
