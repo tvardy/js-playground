@@ -3,12 +3,11 @@ import Preach from 'preach'
 import { _noop } from './utils/noop'
 
 export const constants = {
-  URL: 'wss://node-ws-message-broker.herokuapp.com/',
   APP_ROOT: document.querySelector('[data-app]'),
   NUMBERS: {
     time: {
       min: 64,
-      max: 256
+      max: 128
     },
     values: {
       min: 0,
@@ -20,14 +19,14 @@ export const constants = {
 const preach = new Preach()
 let state
 
-export function createStore (initialState, actions = {}) {
+export function createStore (initialState) {
   state = new Proxy(initialState, stateProxy)
 
   return state
 }
 
 export function connect (mapState = _noop, mapActions = _noop) {
-  const actions = mapActions(state)
+  const actions = mapActions(state) || {}
 
   preach.sub('change', (s) => mapState(s))
   preach.pub('change', state)

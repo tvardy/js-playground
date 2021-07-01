@@ -47,8 +47,7 @@
       "src/js/lz-chat_apprun.js",
       "src/js/lz-chat_hyper.js",
       "src/js/lz-test.js",
-      "src/js/psm-p-m_client.js",
-      "src/js/psm-p-m_emitter.js"
+      "src/js/mikado_client.js"
     ],
     "bundles": [
       "src/js/wc-script_uce.js",
