@@ -1,8 +1,10 @@
+import Mikado from 'mikado/dist/module/mikado'
+import compile from 'mikado/dist/module/compile'
 import { LEVELS, Log } from './tools/Logger.js'
 
-// import { randomRange } from './utils/random.js'
-// import { wsConnect } from './utils/wsConnect.js'
-// import { constants } from './psm-p-m_common.js'
+import { randomRange } from './utils/random.js'
+import { wsConnect } from './utils/wsConnect.js'
+import { constants, createStore } from './psm-p-m_common.js'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
@@ -10,48 +12,49 @@ if (process.env.NODE_ENV === 'development') {
 
 Log.debug('The Data Emmiter script started!')
 
-/*
-const view = ({ status, sending }) => (
-  <>
-    <h1>Emitter Works!</h1>
-    <h2>Status: {status}</h2>
-    <button onclick="app.run('toggle')">{sending ? 'Pause' : 'Play'}</button>
-    <p>See browser console if you want to trace the data being sent</p>
-  </>
-)
+const template = compile(`
+<div>
+  <h1>Emitter Works!</h1>
+  <h2>Status: {{ data.status }}</h2>
+  <button click="toggle">{{ data.sending ? 'Pause' : 'Play' }}</button>
+  <p>See browser console if you want to trace the data being sent</p>
+</div>
+`)
 
-const update = {
-  async init (state) {
+const _state = {
+  status: 'connecting',
+  sending: true
+}
+
+const app = {
+  async start (initialState) {
+    this.view = Mikado(constants.APP_ROOT, template)
+    this.state = createStore(initialState, () => this.render())
+
+    this.view.route('toggle', () => this.toggle())
+
     try {
-      App.ws = await wsConnect(constants.URL)
+      this.ws = await wsConnect(constants.URL)
 
       Log.debug('WS connected')
 
-      App.run('wait')
+      this.state.status = 'connected'
 
-      return {
-        ...state,
-        status: 'connected'
-      }
+      this.step()
     } catch (e) {
       Log.error('WS error:', e)
 
-      return {
-        ...state,
-        status: 'error'
-      }
+      this.state.status = 'error'
     }
   },
-  wait (state) {
-    if (state.sending) {
+  step () {
+    if (this.state.sending) {
       const time = randomRange(constants.NUMBERS.time.min, constants.NUMBERS.time.max)
 
-      setTimeout(() => App.run('sendValue'), time)
+      setTimeout(() => this.sendRandomValue(), time)
     }
-
-    return state
   },
-  sendValue (state) {
+  sendRandomValue () {
     const value = randomRange(
       constants.NUMBERS.values.min,
       constants.NUMBERS.values.max
@@ -59,32 +62,21 @@ const update = {
 
     Log.info('new value:', value)
 
-    App.ws.emit('data', value)
-
-    App.run('wait')
-
-    return state
+    this.ws.emit('data', value)
+    this.step()
   },
-  toggle (state) {
-    const newState = {
-      ...state,
-      sending: !state.sending
-    }
+  toggle () {
+    this.state.sending = !this.state.sending
 
-    if (newState.sending) {
-      setTimeout(() => App.run('wait'), 0)
+    if (this.state.sending) {
+      this.step()
+    } else {
+      Log.info('[PAUSED]')
     }
-
-    return newState
+  },
+  render () {
+    this.view.render(this.state)
   }
 }
 
-const App = app.start(
-  constants.APP_ROOT,
-  { status: 'connecting', sending: true },
-  view,
-  update
-)
-
-App.run('init')
-*/
+app.start(_state)

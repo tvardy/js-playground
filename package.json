@@ -80,6 +80,7 @@
     "hybrids": "5.4.0",
     "hypersimple": "0.4.1",
     "lzwcompress": "1.1.0",
+    "mikado": "0.7.64",
     "nanoid": "3.1.23",
     "pocket.io": "0.1.5",
     "preach": "0.3.0",

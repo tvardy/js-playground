@@ -2,8 +2,6 @@
   import { html, reactive } from '@uce';
   import { connect } from '../store.js'
 
-  const _self = this
-
   const component = {
     html,
     todos: reactive({ list: [] }),
