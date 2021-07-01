@@ -4,7 +4,7 @@ import { LEVELS, Log } from './tools/Logger.js'
 
 import { randomRange } from './utils/random.js'
 import { wsConnect } from './utils/wsConnect.js'
-import { constants, createStore } from './psm-p-m_common.js'
+import { constants, createStore, connect } from './psm-p-m_common.js'
 
 if (process.env.NODE_ENV === 'development') {
   Log.logLevel = LEVELS.DEBUG
@@ -17,21 +17,30 @@ const template = compile(`
   <h1>Emitter Works!</h1>
   <h2>Status: {{ data.status }}</h2>
   <button click="toggle">{{ data.sending ? 'Pause' : 'Play' }}</button>
-  <p>See browser console if you want to trace the data being sent</p>
+  <p>Current value: {{ data.value }}</p>
 </div>
 `)
 
 const _state = {
   status: 'connecting',
-  sending: true
+  sending: true,
+  value: null
 }
 
 const app = {
   async start (initialState) {
     this.view = Mikado(constants.APP_ROOT, template)
-    this.state = createStore(initialState, () => this.render())
+    this.state = createStore(initialState)
 
-    this.view.route('toggle', () => this.toggle())
+    const mapState = () => {
+      this.render()
+    }
+
+    const mapActions = () => ({
+      toggle: () => this.toggle()
+    })
+
+    connect(mapState, mapActions)(this.view)
 
     try {
       this.ws = await wsConnect(constants.URL)
@@ -62,6 +71,7 @@ const app = {
 
     Log.info('new value:', value)
 
+    this.state.value = value
     this.ws.emit('data', value)
     this.step()
   },

@@ -18,20 +18,25 @@ export const constants = {
 }
 
 const preach = new Preach()
+let state
 
-export function createStore (
-  initialState,
-  mapState = _noop,
-  actions = {},
-  mapActions = _noop
-) {
-  const store = new Proxy(initialState, stateProxy)
+export function createStore (initialState, actions = {}) {
+  state = new Proxy(initialState, stateProxy)
 
-  mapActions(actions)
+  return state
+}
+
+export function connect (mapState = _noop, mapActions = _noop) {
+  const actions = mapActions(state)
+
   preach.sub('change', (s) => mapState(s))
-  preach.pub('change', store)
+  preach.pub('change', state)
 
-  return store
+  return (view) => {
+    Object.keys(actions).forEach((name) => {
+      view.route(name, actions[name])
+    })
+  }
 }
 
 const stateProxy = {
