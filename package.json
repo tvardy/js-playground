@@ -87,7 +87,7 @@
     "stent": "8.0.4",
     "uce": "1.16.2",
     "uce-loader": "2.0.0",
-    "uce-template": "0.7.0",
+    "uce-template": "0.7.1",
     "uhtml": "2.7.6"
   },
   "devDependencies": {
@@ -97,9 +97,9 @@
     "browserslist": "4.16.6",
     "cypress": "7.6.0",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "0.12.13",
-    "esbuild-svelte": "0.5.2",
-    "eslint": "7.29.0",
+    "esbuild": "0.12.14",
+    "esbuild-svelte": "0.5.3",
+    "eslint": "7.30.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-babel": "5.3.1",
     "eslint-plugin-import": "2.23.4",
