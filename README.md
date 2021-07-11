@@ -5,8 +5,10 @@ https://tvardy.github.io/js-playground
 
 # What is being done here?
 
----
-
+<details>
+  <summary>
+    Lightweight state management
+  </summary>
 
 ## Lightweight state management
 
@@ -24,9 +26,14 @@ As both applications are connected to the same store, the changes made on one si
 
 Another possible step here would be using the components as **micro-frontends** (e.g. take the header from Svelte version,
 tasks list written with uce-template, and the footer written with another technology)
+</details>
 
 ---
 
+<details>
+  <summary>
+    AppRun + `Pocket.io`
+  </summary>
 
 ## AppRun + `Pocket.io`
 
@@ -44,9 +51,14 @@ The demo page consists of three elements:
    and just reading the data and showing it with additional information if the new number is higher or lower than the previous one.
 
 It's a good example of showing stock or bookmaker price changes in real-time with lightweight JS tools.
+</details>
 
 ---
 
+<details>
+  <summary>
+    LZ Chat
+  </summary>
 
 ## LZ Chat
 
@@ -73,9 +85,14 @@ and a small additional data "mangling" operation (more on that in the next chapt
 I picked this view to make some small comparison of functional testing tools: [Testcafe](https://www.testcafe.io/) vs. [Cypress](https://www.cypress.io/).
 I need to admit that even though I found Testcafe's documentation and syntax much clearer and lean, the Cypress beats it with functionality,
 ability to nest the tests and the mocha/chai familiar syntax.
+</details>
 
 ---
 
+<details>
+  <summary>
+    In-memory LZ compression efficiency test
+  </summary>
 
 ## In-memory LZ compression efficiency test
 
@@ -91,9 +108,14 @@ and compare the results. I found out that using a [little trick](/src/js/utils/l
 
 This test (and quite heavy fake-data creation) pushed me also into creating the [SideWorker](https://github.com/78nine/SideWorker) package.
 You're encouraged to read more in its README ;)
+</details>
 
 ---
 
+<details>
+  <summary>
+    Web Components within script tag
+  </summary>
 
 ## Web Components within script tag
 
@@ -114,8 +136,14 @@ We will be serving such components for other departments in our work and we real
 ```
 
 And... it actually turned out to be pretty easy to achieve using `document.currentScript` element plus... a little [wrapper](/src/js/wc-script_common.js) ;)
+</details>
 
 ---
+
+<details>
+  <summary>
+    Preach State Management + Mikado
+  </summary>
 
 ## Preach State Management + Mikado
 
@@ -125,6 +153,7 @@ I've written a simple application displaying up to 10 randomly generated numbers
 I will try to compare its results with [µhtml](https://www.npmjs.com/package/uhtml)
 
 _[to be continued]_
+</details>
 
 ---
 
