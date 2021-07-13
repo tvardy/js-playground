@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/js/utils/random.js"],
+  "sourcesContent": ["export function randomRange (from, to) {\n  return Math.round(Math.random() * (to - from)) + from\n}\n"],
+  "mappings": "AAAO,WAAsB,EAAM,EAAI,CACrC,MAAO,MAAK,MAAM,KAAK,SAAY,GAAK,IAAS",
+  "names": []
+}
