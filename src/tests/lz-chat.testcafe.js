@@ -27,7 +27,7 @@ const testData = {
 }
 const expected = {
   count: 2,
-  status: 'connected'
+  statuses: /connect(ed|ing)/
 }
 
 fixture`${pageUrl}`.page`${URL}${pageUrl}`.beforeEach(async (t) => {
@@ -53,7 +53,9 @@ test('login, send and receive messages', async (t) => {
 
   for (let i = 0; i < count; i++) {
     const textStatus = await app.nth(i).find(pageModel.status.selector)
-    await t.expect(textStatus.getAttribute(pageModel.status.attr)).eql(expected.status)
+    await t
+      .expect(textStatus.getAttribute(pageModel.status.attr))
+      .match(expected.statuses)
     await t.expect(app.nth(i).find(pageModel.input.msg).exists).ok()
   }
 
