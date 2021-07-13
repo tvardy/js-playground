@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/js/lz-chat_common.js"],
+  "sourcesContent": ["export const constants = {\n  URL: 'wss://node-ws-message-broker.herokuapp.com/'\n}\n\nexport const state = {\n  status: 'login',\n  user: {},\n  messages: []\n}\n"],
+  "mappings": "AAAO,GAAM,GAAY,CACvB,IAAK,+CAGM,EAAQ,CACnB,OAAQ,QACR,KAAM,GACN,SAAU",
+  "names": []
+}
