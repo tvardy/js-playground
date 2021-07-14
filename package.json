@@ -31,7 +31,7 @@
     "cy:run": "cypress run",
     "cy:run:ci": "start-server-and-test test:serve http://localhost:9080 cy:run",
     "test:tc": "run-s test tc:run",
-    "tc:run": "docker run -v $(pwd):/share:ro -w /share -it --user=root testcafe/testcafe:1.15.0 --config-file .testcaferc.json",
+    "tc:run": "docker run -v $PWD:/share:ro -w /share -it --user=root testcafe/testcafe:1.15.0 --config-file .testcaferc.json",
     "test:tc:watch": "npm run test:testcafe:docker -- -L",
     "postinstall": "husky install && cypress install",
     "prepublishOnly": "pinst --disable",
