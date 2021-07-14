@@ -5,8 +5,13 @@ module.exports = {
     node: true,
   },
   parser: 'babel-eslint',
-  extends: ['standard', 'plugin:testcafe/recommended'],
-  plugins: ['babel', 'svelte3', 'testcafe'],
+  extends: [
+    'standard',
+    'plugin:testcafe/recommended',
+    'plugin:cypress/recommended',
+    'plugin:chai-friendly/recommended',
+  ],
+  plugins: ['babel', 'svelte3'],
   parserOptions: {
     ecmaVersion: 6,
   },

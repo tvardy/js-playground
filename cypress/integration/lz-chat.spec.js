@@ -1,31 +1,4 @@
-const pageModel = {
-  app: '[data-qa="app"]',
-  input: {
-    user: 'input[name="user"]',
-    msg: 'input[name="msg"]',
-  },
-  status: {
-    selector: '[data-status]',
-    attr: 'data-status',
-  },
-  chatBox: '.chat-box',
-  message: {
-    selector: '.message',
-    attr: {
-      self: 'data-self',
-      user: 'data-user',
-    },
-  },
-}
-const testData = {
-  users: ['First', 'Second'],
-  messages: ['First message', 'Second message'],
-}
-const expected = {
-  count: 2,
-  status: 'connected',
-  statuses: /connect(ed|ing)/,
-}
+import { pageModel, testData, expected } from '../../src/tests/lz-chat.model'
 
 describe('LZ Chat', () => {
   before(() => {

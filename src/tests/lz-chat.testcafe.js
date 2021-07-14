@@ -1,34 +1,9 @@
 import { URL } from './_config'
 import { Selector } from 'testcafe'
 
+import { pageModel, testData, expected } from './lz-chat.model'
+
 const pageUrl = '/pages/lz-chat.html'
-const pageModel = {
-  app: '[data-qa="app"]',
-  input: {
-    user: 'input[name="user"]',
-    msg: 'input[name="msg"]'
-  },
-  status: {
-    selector: '[data-status]',
-    attr: 'data-status'
-  },
-  chatBox: '.chat-box',
-  message: {
-    selector: '.message',
-    attr: {
-      self: 'data-self',
-      user: 'data-user'
-    }
-  }
-}
-const testData = {
-  users: ['First', 'Second'],
-  messages: ['First message', 'Second message']
-}
-const expected = {
-  count: 2,
-  statuses: /connect(ed|ing)/
-}
 
 fixture`${pageUrl}`.page`${URL}${pageUrl}`.beforeEach(async (t) => {
   t.ctx.app = Selector(pageModel.app)
