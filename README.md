@@ -108,6 +108,9 @@ and compare the results. I found out that using a [little trick](/src/js/utils/l
 
 This test (and quite heavy fake-data creation) pushed me also into creating the [SideWorker](https://github.com/78nine/SideWorker) package.
 You're encouraged to read more in its README ;)
+
+After some time I also discovered the [WebCompressor](https://www.npmjs.com/package/web-compressos) package.
+So I brought it over to compare with `lzwCompress`... the results are amazing...
 </details>
 
 ---

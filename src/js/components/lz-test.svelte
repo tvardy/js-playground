@@ -1,10 +1,30 @@
 <script>
-  import lzw from 'lzwcompress'
-  import { pack, compress } from '../utils/lzip.js'
-  import worker from '../tools/FakeJSONDataWorker.js'
+  import pSeries from 'p-series'
+  import FakerWorker from '../tools/FakeJSONDataWorker.js'
+  import CompressionWorker from '../tools/CompressionWorker.js'
 
-  let processing
-  let ready
+  let generating = false
+  let compressing = false
+  let ready = false
+  let numberOfRecords = 0
+  let data = null
+
+  const TYPES = [
+    'lzwDec',
+    'lzw32',
+    'b64deflate',
+    'b64gzip',
+    'utf16deflate',
+    'utf16gzip'
+  ]
+  const values = {
+    json: null,
+    jsonPretty: null
+  }
+  const lengths = { json: null }
+  const percentage = {}
+
+  $: ready = data && !generating && !compressing
 
   function handleKeyDown (e) {
     if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
@@ -21,45 +41,33 @@
     numberOfRecords = parseInt(numberOfRecords)
 
     if (numberOfRecords > 0) {
-      data = []
+      generating = true
+      data = await _generate()
+      generating = false
 
-      data = await worker.run.generate(numberOfRecords)
+      values.json = JSON.stringify(data)
+      lengths.json = values.json.length
+      values.jsonPretty = JSON.stringify(data, null, 2)
+
+      compressing = true
+      const packed = await pSeries(_pack())
+      compressing = false
+
+      TYPES.forEach((type, index) => {
+        values[type] = packed[index]
+        lengths[type] = values[type].length
+        percentage[type] = ((lengths[type] / lengths.json) * 100).toFixed(2)
+      })
     }
   }
 
-  let numberOfRecords = 0
-  let data = null
-
-  const values = {
-    json: null,
-    jsonPretty: null,
-    10: null,
-    32: null
-  }
-  const lengths = {
-    json: null,
-    10: null,
-    32: null
-  }
-  const percentage = {
-    10: null,
-    32: null
+  async function _generate () {
+    return FakerWorker.run.generate(numberOfRecords)
   }
 
-  $: processing = Array.isArray(data) && !data.length
-  $: ready = Array.isArray(data) && data.length
-
-  $: values.json = JSON.stringify(data)
-  $: values.jsonPretty = JSON.stringify(data, null, 2)
-  $: values['10'] = lzw.pack(values.json).join(compress.sep)
-  $: values['32'] = pack(data)
-
-  $: lengths.json = values.json.length
-  $: lengths['10'] = values['10'].length
-  $: lengths['32'] = values['32'].length
-
-  $: percentage['10'] = ((lengths['10'] / lengths.json) * 100).toFixed(2)
-  $: percentage['32'] = ((lengths['32'] / lengths.json) * 100).toFixed(2)
+  function _pack () {
+    return TYPES.map(type => () => CompressionWorker.run[type](values.json))
+  }
 </script>
 
 <div class="lz-input">
@@ -69,8 +77,12 @@
   </span>
 </div>
 
-{#if processing}
+{#if generating}
   <pre class="lz-result">creating data...</pre>
+{/if}
+
+{#if compressing}
+  <pre class="lz-result">compressing data...</pre>
 {/if}
 
 {#if ready}
@@ -78,8 +90,11 @@
     class="lz-result">
 Number of records: { numberOfRecords }
 JSON string length: { lengths.json }
-Zipped decimals string length: { lengths['10'] } ({ percentage['10'] } %)
-Zipped 32-bit string length: { lengths['32'] } ({ percentage['32'] } %)
+
+<strong>Compression type results:</strong>
+{#each TYPES as type}
+{ type }: { lengths[type] } ({ percentage[type] } %)<br>
+{/each}
 </pre>
   <div class="lz-data">
     <details>
@@ -87,16 +102,12 @@ Zipped 32-bit string length: { lengths['32'] } ({ percentage['32'] } %)
       <pre>{ values.jsonPretty }</pre>
     </details>
   </div>
+  {#each TYPES as type}
   <div class="lz-data wrap">
     <details>
-      <summary>toggle LZipped decimal data</summary>
-      <pre>{ values[10] }</pre>
+      <summary>{ type }</summary>
+      <pre>{ values[type] }</pre>
     </details>
-  </div>
-  <div class="lz-data wrap">
-    <details>
-      <summary>toggle LZipped 32-bit data</summary>
-      <pre>{ values['32'] }</pre>
-    </details>
-  </div>
+  </div>  
+  {/each}
 {/if}
