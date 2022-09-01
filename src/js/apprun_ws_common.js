@@ -1,5 +1,5 @@
 export const constants = {
-  URL: 'wss://node-ws-message-broker.herokuapp.com/',
+  URL: 'wss://message-broker.up.railway.app/',
   APP_ROOT: document.querySelector('[data-app]'),
   NUMBERS: {
     time: {
