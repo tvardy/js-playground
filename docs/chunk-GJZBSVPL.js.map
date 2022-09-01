@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/js/apprun_ws_common.js"],
-  "sourcesContent": ["export const constants = {\n  URL: 'wss://node-ws-message-broker.herokuapp.com/',\n  APP_ROOT: document.querySelector('[data-app]'),\n  NUMBERS: {\n    time: {\n      min: 21,\n      max: 1234\n    },\n    values: {\n      min: 0,\n      max: 200\n    }\n  }\n}\n"],
-  "mappings": "AAAO,GAAM,GAAY,CACvB,IAAK,8CACL,SAAU,SAAS,cAAc,cACjC,QAAS,CACP,KAAM,CACJ,IAAK,GACL,IAAK,MAEP,OAAQ,CACN,IAAK,EACL,IAAK",
-  "names": []
-}

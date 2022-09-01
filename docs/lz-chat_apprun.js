@@ -1,4 +1,4 @@
-import{b as l,c as n}from"./chunk-O6JHPXQZ.js";import{a as p,b as c,c as g,d}from"./chunk-GKKWL3HR.js";import"./chunk-MOOY4HSH.js";import{a as i}from"./chunk-M5O3SXJ6.js";import{a,b as u,h as m}from"./chunk-BZFIDKTD.js";var x=n`
+import{b as l,c as n}from"./chunk-O6JHPXQZ.js";import{a as p,b as c,c as g,d}from"./chunk-W47AAOCH.js";import"./chunk-MOOY4HSH.js";import{a as i}from"./chunk-M5O3SXJ6.js";import{a,b as u,h as m}from"./chunk-BZFIDKTD.js";var x=n`
   <form class="box wide login" onSubmit=${e=>app.run("login",e)}>
     <input name="user" placeholder="Your nickname" />
   </form>
