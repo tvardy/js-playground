@@ -1,0 +1,16 @@
+name: GitHub Pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build:ghpages
