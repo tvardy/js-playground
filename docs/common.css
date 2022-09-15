@@ -56,6 +56,13 @@ body > section header {
   margin-bottom: 1em;
 }
 
+body > footer {
+  font-family: monospace;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-block: 1.6rem;
+}
+
 .page-links {
   line-height: 1.44;
 }
