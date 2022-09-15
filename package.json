@@ -75,21 +75,21 @@
   "homepage": "https://tvardy.github.io/js-playground",
   "dependencies": {
     "@78nine/sideworker": "1.0.2",
-    "apprun": "3.28.7",
+    "apprun": "3.28.15",
     "hybrids": "5.4.0",
     "hypersimple": "0.4.1",
     "lzwcompress": "1.1.0",
     "mikado": "0.7.64",
-    "nanoid": "3.1.23",
-    "p-series": "2.1.0",
+    "nanoid": "4.0.0",
+    "p-series": "3.0.0",
     "pocket.io": "0.1.5",
     "preach": "0.3.0",
-    "riot": "5.4.5",
+    "riot": "7.0.6",
     "stent": "8.0.4",
     "uce": "1.16.5",
     "uce-loader": "2.0.0",
     "uce-template": "0.7.1",
-    "uhtml": "2.7.6"
+    "uhtml": "3.0.1"
   },
   "devDependencies": {
     "@riotjs/cli": "5.3.0",
