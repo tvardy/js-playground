@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../node_modules/uarray/esm/index.js"],
+  "sourcesContent": ["const {isArray} = Array;\nconst {indexOf, slice} = [];\n\nexport {isArray, indexOf, slice};\n"],
+  "mappings": "AAAA,GAAM,CAAC,QAAAA,CAAO,EAAI,MACZ,CAAC,QAAAC,EAAS,MAAAC,CAAK,EAAI,CAAC",
+  "names": ["isArray", "indexOf", "slice"]
+}
