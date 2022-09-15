@@ -13,4 +13,12 @@ jobs:
       - name: Install and Build
         run: |
           npm ci
-          npm run build:ghpages
+          npm run build:prod
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: main
+          folder: dist
+          target-folder: docs
+          commit-message: "docs: update GH Pages"

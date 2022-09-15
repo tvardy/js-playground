@@ -11,7 +11,6 @@
     "build": "node .esbuild.cjs",
     "build:riot": "riot src/js/wc-script_riot.js -o src/js/wc-script_riot_wrapper.js",
     "build:prod": "npm run build -- prod",
-    "build:ghpages": "rm -rf ./docs && npm run build:prod && mv ./dist ./docs && rm -rf ./docs/*.map && git commit -am \"docs: update GH Pages\"",
     "postbuild": "run-p copy:* rename:*",
     "copy:html": "cp src/*.html dist && cp -r src/pages dist/",
     "copy:css": "cp src/*.css dist/",
