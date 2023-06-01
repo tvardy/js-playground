@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/js/apprun_ws_common.js"],
+  "sourcesContent": ["export const constants = {\n  // URL: 'wss://message-broker.up.railway.app/',\n  URL: 'wss://frog01-30247.wykr.es/',\n  APP_ROOT: document.querySelector('[data-app]'),\n  NUMBERS: {\n    time: {\n      min: 21,\n      max: 1234\n    },\n    values: {\n      min: 0,\n      max: 200\n    }\n  }\n}\n"],
+  "mappings": "AAAO,IAAMA,EAAY,CAEvB,IAAK,8BACL,SAAU,SAAS,cAAc,YAAY,EAC7C,QAAS,CACP,KAAM,CACJ,IAAK,GACL,IAAK,IACP,EACA,OAAQ,CACN,IAAK,EACL,IAAK,GACP,CACF,CACF",
+  "names": ["constants"]
+}
