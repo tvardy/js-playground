@@ -1,5 +1,6 @@
 export const constants = {
-  URL: 'wss://message-broker.up.railway.app/',
+  // URL: 'wss://message-broker.up.railway.app/',
+  URL: 'wss://frog01-30247.wykr.es/',
   APP_ROOT: document.querySelector('[data-app]'),
   NUMBERS: {
     time: {
