@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/js/utils/noop.js"],
-  "sourcesContent": ["export const _noop = () => {}\n"],
-  "mappings": "AAAO,IAAMA,EAAQ,IAAM,CAAC",
-  "names": ["_noop"]
-}

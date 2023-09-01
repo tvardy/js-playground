@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/js/utils/wsConnect.js"],
-  "sourcesContent": ["/* global io */\nexport function wsConnect (url) {\n  return new Promise((resolve, reject) => {\n    const instance = new Socket(url)\n\n    instance.on('connect', () => resolve(instance))\n    instance.on('error', (err) => reject(err))\n  })\n}\n\nclass Socket {\n  constructor (url) {\n    this._io = io(url)\n  }\n\n  get id () {\n    return this._io.id\n  }\n\n  on (...args) {\n    this._io.on(...args)\n  }\n\n  emit (...args) {\n    this._io.emit(...args)\n  }\n}\n"],
-  "mappings": "AACO,SAASA,EAAWC,EAAK,CAC9B,OAAO,IAAI,QAAQ,CAACC,EAASC,IAAW,CACtC,IAAMC,EAAW,IAAIC,EAAOJ,CAAG,EAE/BG,EAAS,GAAG,UAAW,IAAMF,EAAQE,CAAQ,CAAC,EAC9CA,EAAS,GAAG,QAAUE,GAAQH,EAAOG,CAAG,CAAC,CAC3C,CAAC,CACH,CAEA,IAAMD,EAAN,KAAa,CACX,YAAaJ,EAAK,CAChB,KAAK,IAAM,GAAGA,CAAG,CACnB,CAEA,IAAI,IAAM,CACR,OAAO,KAAK,IAAI,EAClB,CAEA,MAAOM,EAAM,CACX,KAAK,IAAI,GAAG,GAAGA,CAAI,CACrB,CAEA,QAASA,EAAM,CACb,KAAK,IAAI,KAAK,GAAGA,CAAI,CACvB,CACF",
-  "names": ["wsConnect", "url", "resolve", "reject", "instance", "Socket", "err", "args"]
-}
